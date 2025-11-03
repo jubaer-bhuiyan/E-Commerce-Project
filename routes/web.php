@@ -12,7 +12,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard.index');
+    // return view('admin.dashboard.index');
+    return view('admin.layouts.app');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
 Route::middleware('auth')->group(function () {
