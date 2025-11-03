@@ -101,7 +101,7 @@ class Authenticate implements AuthenticatesRequests
         throw new AuthenticationException(
             'Unauthenticated.',
             $guards,
-            $request->expectsJson() ? null : $this->redirectTo($request),
+            $request->expectsJson() ? null : $this->redirectTo($request, $guards),
         );
     }
 
@@ -111,8 +111,14 @@ class Authenticate implements AuthenticatesRequests
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected function redirectTo(Request $request)
+    protected function redirectTo(Request $request, array $guards)
     {
+        foreach ($guards as $guard) {
+            if ($guard == 'admin'){
+                return route('admin.login');
+            }
+        }
+
         if (static::$redirectToCallback) {
             return call_user_func(static::$redirectToCallback, $request);
         }
