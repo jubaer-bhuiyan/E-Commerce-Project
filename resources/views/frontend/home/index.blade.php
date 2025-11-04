@@ -1,0 +1,49 @@
+@extends('frontend.layouts.app')
+
+@section('contents')
+    <!--Start hero slider-->
+    @include('frontend.home.sections.hero-section')
+    <!--End hero slider-->
+
+    <!--Start category slider-->
+    @include('frontend.home.sections.category-section')
+    <!--End category slider-->
+
+    <!--Start banners-->
+    @include('frontend.home.sections.banner-section')
+    <!--End banners-->
+
+    <!--Start products tabs-->
+    @include('frontend.home.sections.products-tabs-section')
+    <!--End Products Tabs-->
+
+    <!--Start 4 banners(Banner Section Two)-->
+    @include('frontend.home.sections.banner-section-two')
+    <!--End 4 banners(Banner Section Two)-->
+
+    <!--Start Daily Best Sells(flash-sale-section)-->
+    @include('frontend.home.sections.flash-sale-section')
+    <!--End Best Sales(flash-sale-section)-->
+
+    <!-- new arrival start -->
+    @include('frontend.home.sections.new-arrival-section')
+    <!-- new arrival end -->
+
+    <!--CTA section start-->
+    <section class="wsus__ctg mt-40">
+        <div class="container">
+            <a href="#" class="wsus__ctg_area">
+                <img src="assets/imgs/cta_bg.png" alt="cta" class="img-fluid w-100" />
+            </a>
+        </div>
+    </section>
+    <!--CTA section end-->
+
+    <!-- special products start -->
+    @include('frontend.home.sections.special-products-section')
+    <!-- special products end -->
+
+    <!--Start 4 columns-->
+    @include('frontend.home.sections.four-col-products-section')
+    <!--End 4 columns-->
+@endsection
