@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\UserDashboardController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Frontend\ProfileController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +12,9 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+
+    // Profile routes
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });
 
 require __DIR__ . '/auth.php';

@@ -26,7 +26,7 @@
                                         <a class="nav-link" href=""><i class="fi-rs-marker mr-10"></i>My Address</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fi-rs-user mr-10"></i>Account
+                                        <a class="nav-link" href="{{ route('profile') }}"><i class="fi-rs-user mr-10"></i>Account
                                             details</a>
                                     </li>
                                     <li class="nav-item">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-9">
                             <div class="tab-content account dashboard-content pl-50">
-                                @yield('dashboard-contents')
+                                @yield('dashboard_contents')
                             </div>
                         </div>
                     </div>
