@@ -11,6 +11,10 @@
                 <form method="post" action="{{ route('profile.update') }}">
                     @csrf
                     @method('PUT')
+                    <div id="image-preview">
+                        <label for="image-upload" id="image-label">Choose File</label>
+                        <input type="file" name="image" id="image-upload" />
+                    </div>
                     <div class="row mt-30">
                         <div class="form-group col-md-12">
                             <label>Name <span class="required">*</span></label>
@@ -75,3 +79,18 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.uploadPreview({
+                input_field: "#image-upload", // Default: .image-upload
+                preview_box: "#image-preview", // Default: .image-preview
+                label_field: "#image-label", // Default: .image-label
+                label_default: "Choose File", // Default: Choose File
+                label_selected: "Change File", // Default: Change File
+                no_label: false // Default: false
+            });
+        });
+    </script>
+@endpush
