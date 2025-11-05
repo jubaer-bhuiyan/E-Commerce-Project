@@ -32,4 +32,19 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    function passwordUpdate(Request $request) : RedirectResponse
+    {
+        $request->validate([
+            'current_password' => ['required', 'string', 'current_password'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = auth('web')->user();
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        AlertService::updated();
+        return redirect()->back();
+    }
+
 }
