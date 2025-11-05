@@ -1,6 +1,6 @@
 @extends('frontend.dashboard.dashboard-app')
 
-@section('dashboard-contents')
+@section('dashboard_contents')
 <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
     <div class="card">
         <div class="card-header p-0 pb-10">
