@@ -26,9 +26,10 @@ class ProfileController extends Controller
         ]);
 
         $user = auth('web')->user();
-
-        $filepath = $this->uploadFile($request->file('avatar'), $user->avatar);
-        $filepath ? $user->avatar = $filepath : null;
+        if ($request->hasFile('avatar')) {
+            $filepath = $this->uploadFile($request->file('avatar'), $user->avatar);
+            $filepath ? $user->avatar = $filepath : null;
+        }
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
