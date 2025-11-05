@@ -64,6 +64,8 @@ Route::middleware('auth:admin')
             ->name('profile.index');
         Route::put('/profile', [ProfileController::class, 'profileUpdate'])
             ->name('profile.update');
+        Route::put('/profile/password', [ProfileController::class, 'passwordUpdate'])
+            ->name('password.update');
     });
 
 Route::get('/admin/dashboard', function () {
