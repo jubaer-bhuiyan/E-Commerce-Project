@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <label for="" class="font-weight-bold">Date of birth <span class="text-danger">*</span></label>
                                             <input type="text" required="" name="date_of_birth"
-                                                placeholder="1990/7/9" />
+                                                placeholder="07/15/1990" class="datepicker" />
                                             <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
                                         </div>
 
