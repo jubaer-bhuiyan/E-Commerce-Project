@@ -31,10 +31,14 @@ class KycController extends Controller
             'document_scan_copy' => ['required', 'mimes:png,pdf,csv,docx', 'max:10000'],
         ]);
 
-        
-
-        $kyc = new Kyc();
+        if(Kyc::where('user_id', auth('web')->user()->id)->exists()) {
+            $kyc = Kyc::where('user_id', auth('web')->user()->id)->first();
+        }
+        else {
+            $kyc = new Kyc();
+        }
         $kyc->full_name = $request->full_name;
+        $kyc->status = 'pending';
         $kyc->user_id = auth('web')->user()->id;
         $kyc->date_of_birth = $request->date_of_birth;
         $kyc->gender = $request->gender;
@@ -46,7 +50,7 @@ class KycController extends Controller
         $kyc->save();
 
         AlertService::created('KYC Information Submitted Successfully. We will review your information shortly.');
-        return redirect()->route('vendor.dashboard.index');
+        return redirect()->route('vendor.dashboard');
 
 
     }
