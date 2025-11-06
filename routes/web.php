@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\KycController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\VendorDashboardController;
@@ -18,6 +19,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'profileUpdate'])->name('profile.update');
     Route::put('/profile/password', [ProfileController::class, 'passwordUpdate'])->name('password.update');
+
+    // KYC routes
+    Route::get('/kyc-verification', [KycController::class, 'Index'])->name('kyc.index');
 });
 
 // Vendor routes
