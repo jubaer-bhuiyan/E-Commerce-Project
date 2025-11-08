@@ -74,7 +74,7 @@ Route::middleware('auth:admin')
         Route::get('/kyc-requests/pending', [KycRequestController::class, 'pending'])
             ->name('kyc.pending');
         Route::get('/kyc-requests/rejected', [KycRequestController::class, 'rejected'])
-            ->name('kyc.rejected'); 
+            ->name('kyc.rejected');
         Route::get('/kyc-requests/{kyc_request}', [KycRequestController::class, 'show'])
             ->name('kyc.show');
         Route::get('/kyc-requests/download/{kyc_request}', [KycRequestController::class, 'download'])
