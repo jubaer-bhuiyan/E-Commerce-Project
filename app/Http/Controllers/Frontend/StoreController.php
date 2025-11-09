@@ -80,10 +80,10 @@ class StoreController extends Controller
         ];
 
         if ($request->hasFile('logo')) {
-            $data['logo'] = $this->uploadFile($request->file('logo'));
+            $data['logo'] = $this->uploadFile($request->file('logo'), auth('web')->user()->store?->logo);
         }
         if ($request->hasFile('banner')) {
-            $data['banner'] = $this->uploadFile($request->file('banner'), null, 'defaults');
+            $data['banner'] = $this->uploadFile($request->file('banner'), auth('web')->user()->store?->banner);
         }
 
         Store::updateOrCreate(
