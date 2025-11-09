@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Store;
 use App\Services\AlertService;
 use App\Traits\FileUploadTrait;
+use Illuminate\Contracts\View\View as ViewView;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class StoreController extends Controller
 {
@@ -16,7 +18,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return view('vendor-dashboard.store-profile.index');
+        $store = auth('web')->user()?->store;
+        return view('vendor-dashboard.store-profile.index', compact('store'));
     }
 
     /**
@@ -80,7 +83,7 @@ class StoreController extends Controller
             $data['logo'] = $this->uploadFile($request->file('logo'));
         }
         if ($request->hasFile('banner')) {
-            $data['banner'] = $this->uploadFile($request->file('banner'));
+            $data['banner'] = $this->uploadFile($request->file('banner'), null, 'defaults');
         }
 
         Store::updateOrCreate(
