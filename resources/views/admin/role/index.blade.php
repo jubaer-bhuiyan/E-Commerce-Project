@@ -21,7 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @forelse ($roles as $role)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $role->name }}</td>
@@ -29,9 +29,14 @@
 
                                     <td>
                                         <a href="{{ route('admin.role.edit', $role) }}">Edit</a>
+                                        <a class="text-danger delete-item" href="{{ route('admin.role.destroy', $role) }}">Delete</a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">No Roles</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
