@@ -16,7 +16,8 @@ class RoleController extends Controller
      */
     public function index() : View
     {
-        return view('admin.role.index');
+        $roles = Role::withCount('permissions')->get();
+        return view('admin.role.index', compact('roles'));
     }
 
     /**
@@ -57,17 +58,28 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        $permissions = Permission::all()->groupBy('group_name');
+        return view('admin.role.edit', compact('role', 'permissions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'role' => ['required', 'string', 'max:255', 'unique:roles,name,'. $role->id],
+            'permissions' => ['required', 'array'],
+        ]);
+
+        $role->update(['name' => $request->role]);
+        $role->syncPermissions($request->permissions);
+
+        AlertService::updated();
+
+        return to_route('admin.role.index');
     }
 
     /**
