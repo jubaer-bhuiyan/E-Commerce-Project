@@ -70,9 +70,32 @@ class UserRoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Admin $role_user)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:admins,email,'.$role_user->id],
+        ]);
+
+        $role = Role::findOrFail($request->role);
+
+        $admin = $role_user;
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        if($request->filled('password')){
+            $request->validate([
+                'password' => ['required', 'confirmed', 'min:8'],
+            ]);
+            $admin->password = bcrypt($request->password);
+        }
+        $admin->save();
+
+        //Assign Role
+        $admin->assignRole($role);
+
+        AlertService::created();
+
+        return to_route('admin.role-users.index');
     }
 
     /**

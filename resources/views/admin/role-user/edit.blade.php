@@ -12,6 +12,7 @@
             <div class="card-body">
                 <form action="{{ route('admin.role-users.update', $admin) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
@@ -61,7 +62,7 @@
                 </form>
             </div>
             <div class="card-footer text-end">
-                <button class="btn btn-primary mt-3" onclick="$('form').submit()">Create</button>
+                <button class="btn btn-primary mt-3" onclick="$('form').submit()">Update</button>
             </div>
         </div>
     </div>
