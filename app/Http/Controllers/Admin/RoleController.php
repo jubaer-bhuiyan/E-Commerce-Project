@@ -7,14 +7,23 @@ use App\Services\AlertService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role as Role;
 
-class RoleController extends Controller
+class RoleController extends Controller implements HasMiddleware
 {
+    static function Middleware(): array
+    {
+        return [
+            new Middleware('permission:Role Management')
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */
