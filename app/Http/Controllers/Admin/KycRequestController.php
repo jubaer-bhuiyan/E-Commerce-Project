@@ -10,11 +10,20 @@ use Illuminate\Console\View\Components\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class KycRequestController extends Controller
+class KycRequestController extends Controller implements HasMiddleware
 {
+    static function Middleware() : array
+    {
+        return [
+            new Middleware('permission:KYC Management')
+        ];
+    }
+
     function index(): View
     {
         $kycRequests = Kyc::paginate(25);
