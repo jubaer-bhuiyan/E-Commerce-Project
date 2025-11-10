@@ -45,6 +45,11 @@ class UserRoleController extends Controller
 
         $role = Role::findOrFail($request->role);
 
+        if ($role->name == 'Super Admin') {
+            AlertService::error('You can not create Super Admin user.');
+            return to_route('admin.role-users.index');
+        }
+
         $admin = new Admin();
         $admin->name = $request->name;
         $admin->email = $request->email;
@@ -74,6 +79,11 @@ class UserRoleController extends Controller
      */
     public function update(Request $request, Admin $role_user)
     {
+        if ($role_user->hasRole('Super Admin')) {
+            AlertService::error('You can not update Super Admin user.');
+            return to_route('admin.role-users.index');
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:admins,email,'.$role_user->id],
@@ -105,6 +115,10 @@ class UserRoleController extends Controller
      */
     public function destroy(Admin $role_user) : JsonResponse
     {
+        if ($role_user->hasRole('Super Admin')) {
+            return response()->json(['status' => 'error', 'message' => 'You can not update Super Admin user.']);
+        }
+
         try {
             //remove Roles
             foreach($role_user->getRoleNames() as $role){

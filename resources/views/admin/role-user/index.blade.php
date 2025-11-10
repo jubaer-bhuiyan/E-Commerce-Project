@@ -34,8 +34,10 @@
                                     </td>
 
                                     <td>
-                                        <a href="{{ route('admin.role-users.edit', $admin) }}">Edit</a>
-                                        <a class="text-danger delete-item" href="{{ route('admin.role-users.destroy', $admin) }}">Delete</a>
+                                         @if(!$admin->hasRole('Super Admin'))
+                                            <a href="{{ route('admin.role-users.edit', $admin) }}">Edit</a>
+                                            <a class="text-danger delete-item" href="{{ route('admin.role-users.destroy', $admin) }}">Delete</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty

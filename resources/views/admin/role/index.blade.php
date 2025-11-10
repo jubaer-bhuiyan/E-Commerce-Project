@@ -28,8 +28,11 @@
                                     <td><span class="badge bg-primary-lt">{{ $role->permissions_count }}</span></td>
 
                                     <td>
-                                        <a href="{{ route('admin.role.edit', $role) }}">Edit</a>
-                                        <a class="text-danger delete-item" href="{{ route('admin.role.destroy', $role) }}">Delete</a>
+                                        @if ($role->name != 'Super Admin')
+                                            <a href="{{ route('admin.role.edit', $role) }}">Edit</a>
+                                            <a class="text-danger delete-item"
+                                                href="{{ route('admin.role.destroy', $role) }}">Delete</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
@@ -41,7 +44,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                  </div>
+                </div>
             </div>
         </div>
     </div>
