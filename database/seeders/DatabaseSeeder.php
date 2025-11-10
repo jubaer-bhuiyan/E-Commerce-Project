@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Seeders\Admin\AdminSeeder;
+use Database\Seeders\Admin\PermissionSeeder;
 use Database\Seeders\Frontend\UserSeeder;
 use Illuminate\Database\Seeder;
 
@@ -25,7 +26,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+         /** Admin Seeders */
         $this->call(AdminSeeder::class);
+        $this->call(PermissionSeeder::class);
+
+
+        /** Frontend Seeders */
         $this->call(UserSeeder::class);
     }
 }
