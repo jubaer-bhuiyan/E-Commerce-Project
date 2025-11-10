@@ -17,7 +17,8 @@ class UserRoleController extends Controller
      */
     public function index(): View
     {
-        return view('admin.role-user.index');
+        $admins = Admin::all();
+        return view('admin.role-user.index', compact('admins'));
     }
 
     /**
@@ -57,19 +58,13 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Admin $role_user)
     {
-        //
+        $admin = $role_user;
+        $roles = Role::all();
+        return view('admin.role-user.edit', compact('admin', 'roles'));
     }
 
     /**
