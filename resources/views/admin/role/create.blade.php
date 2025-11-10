@@ -20,6 +20,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        @foreach ($permissions as $groupName => $permission)
+                            <div class="col-md-4 mb3">
+                                <h3>{{ $groupName }}</h3>
+                                @foreach ($permission as $item)
+                                    <label for="" class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="{{ $item->name }}"
+                                            name="permissions[]">
+                                        <span class="form-check-label">{{ $item->name }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    </div>
+
                 </form>
             </div>
             <div class="card-footer">
