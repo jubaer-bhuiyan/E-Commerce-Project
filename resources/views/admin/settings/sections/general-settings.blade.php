@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="btn-list justify-content-end mt-5">
-                <button type="submit" class="btn btn-primary btn-2"> Submit </button> 
+                <button type="submit" class="btn btn-primary btn-2"> Submit </button>
             </div>
         </form>
     </div>
