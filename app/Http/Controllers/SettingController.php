@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use App\Services\AlertService;
+use App\Services\SettingService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,9 @@ class SettingController extends Controller
                 ['value' => $value]
             );
         }
+
+        $settings = app()->make(SettingService::class);
+        $settings->clearCashedSettings();
 
         AlertService::updated();
 
