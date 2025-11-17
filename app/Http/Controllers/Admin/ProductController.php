@@ -49,13 +49,12 @@ class ProductController extends Controller implements HasMiddleware
         $stores = Store::select(['name', 'id'])->get();
         $brands = Brand::select(['name', 'id'])->where('is_active', 1)->get();
         $tags = Tag::where('is_active', 1)->get();
-        $categories = Category::getNested(); 
+        $categories = Category::getNested();
         return view('admin.product.create', compact('stores', 'brands', 'tags', 'categories'));
     }
 
     function store(ProductStoreRequest $request, string $type)
     {
-
         if (!in_array($type, ['physical', 'digital'])) abort(404);
 
         $product = new Product();

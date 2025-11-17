@@ -523,9 +523,9 @@
                     },
                     error: function(xhr, status, error) {
                         console.log(xhr);
-                        let errors = xhr.responseJSON.errors; 
+                        let errors = xhr.responseJSON.errors;
                         $.each(errors, function(key, value) {
-                            notyf.error(errors[key][0]);
+                            notyf.error(errors[key][0]); 
                         });
                     }
                 })
