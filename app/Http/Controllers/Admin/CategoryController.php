@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
 {
@@ -22,6 +23,24 @@ class CategoryController extends Controller
             'parent_id' => ['nullable', 'exists:categories,id'],
             'is_active' => ['boolean'],
         ]);
+
+        // prevent circular reference and max depth
+        if ($data['parent_id'] ?? null) {
+            $parent = Category::find($data['parent_id']);
+            $depth = 1;
+
+            while ($parent && $parent->parent_id) {
+                $depth++;
+                $parent = $parent->parent;
+                if ($depth >= 3) break;
+            }
+
+            if ($depth >= 3) {
+                throw ValidationException::withMessages([
+                    'parent_id' => 'Maximum depth reached'
+                ]);
+            }
+        }
 
         $data['position'] = Category::where('parent_id', $data['parent_id'] ?? null)->max('position') + 1;
 
