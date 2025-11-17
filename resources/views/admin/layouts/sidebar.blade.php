@@ -244,10 +244,10 @@
                                 @endif
                             </div>
                             <div class="dropdown-menu-columns">
-                                @if (hasPermission(['Role User Management']))
+                                @if (hasPermission(['Role Management']))
                                     <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
-                                            Role User
+                                        <a class="dropdown-item" href="{{ route('admin.tags.index') }}">
+                                            Products Tags
                                         </a>
                                     </div>
                                 @endif
