@@ -177,6 +177,25 @@
                 return html;
             }
 
+            function updateOrder() {
+                let tree = $('#nestable-tree').nestable('serialize');
+                $.post({
+                    url: "{{ route('admin.categories.update-order') }}",
+                    data: {
+                        tree: tree,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            notyf.success(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+
+                    }
+                })
+            }
+
             $("#category-form").submit(function(e) {
                 e.preventDefault();
 
