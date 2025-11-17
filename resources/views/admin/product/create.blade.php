@@ -291,7 +291,7 @@
 
                     <div class="card mb-3">
                         <div class="card-header">
-                            <h3 class="card-title">Categories</h3>
+                            <h3 class="card-title">Categories</h3> 
                         </div>
                         <div class="card-body" style="height: 400px; overflow-y: scroll;">
                             <div class="col-md-12">
@@ -453,7 +453,7 @@
                 console.log($li);
 
                 if ($li.length) {
-                    const $siblings = $li.find('> ul > li input.category-check'); 
+                    const $siblings = $li.find('> ul > li input.category-check');
                     const checkedCount = $siblings.filter(':checked').length;
                     const $parent = $li.find('> label > input.category-check');
 
