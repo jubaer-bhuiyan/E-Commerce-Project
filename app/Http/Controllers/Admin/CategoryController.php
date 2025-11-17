@@ -54,6 +54,41 @@ class CategoryController extends Controller
         return response()->json(['success' => true, 'message' => 'Category created successfully', 'category' => $category]);
     }
 
+    function update(Request $request, int $id)
+    {
+        $category = Category::findOrFail($id);
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', 'unique:categories,slug,' . $category->id],
+            'parent_id' => ['nullable', 'exists:categories,id'],
+            'is_active' => ['boolean'],
+        ]);
+
+        // prevent circular reference and max depth
+        if ($data['parent_id'] ?? null) {
+            $parent = Category::find($data['parent_id']);
+            $depth = 1;
+
+            while ($parent && $parent->parent_id) {
+                $depth++;
+                $parent = $parent->parent;
+                if ($depth >= 3) break;
+            }
+
+            if ($depth >= 3) {
+                throw ValidationException::withMessages([
+                    'parent_id' => 'Maximum depth reached'
+                ]);
+            }
+        }
+
+        $data['is_active'] = $data['is_active'] ?? false;
+
+        $category->update($data);
+
+        return response()->json(['success' => true, 'message' => 'Category updated successfully', 'category' => $category, 'type' => 'update']);
+    }
+
     function updateOrder(Request $request)
     {
         $tree = $request->tree;
@@ -82,6 +117,12 @@ class CategoryController extends Controller
                 $this->updateTree($node['children'], $category->id);
             }
         }
+    }
+
+    function show(int $id)
+    {
+        $category = Category::findOrFail($id);
+        return response()->json($category);
     }
 
     function getNestedCategories()

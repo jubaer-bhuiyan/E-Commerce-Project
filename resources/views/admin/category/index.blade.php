@@ -91,6 +91,7 @@
                     <div class="card-header"><span id="category-title">Create Category</span></div>
                     <div class="card-body">
                         <form id="category-form" action="">
+                            <input type="hidden" id="category-id">
                             <div class="mb-2">
                                 <label for="" class="form-label">Name <span class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control" required id="name">
@@ -116,7 +117,7 @@
 
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary" id="btn-save">Save</button>
-                                <button type="button" class="btn btn-danger" id="btn-delete">Delete</button>
+                                <button type="button" class="btn btn-danger d-none" id="btn-delete">Delete</button>
                                 <button type="button" class="btn btn-secondary" id="btn-cancel">Cancel</button>
                             </div>
 
@@ -199,8 +200,10 @@
             $("#category-form").submit(function(e) {
                 e.preventDefault();
 
-                let method = "POST";
-                let url = "{{ route('admin.categories.store') }}";
+                let id = $('#category-id').val();
+                let method = id ? 'PUT' : 'POST';
+                let url = id ? "{{ route('admin.categories.update', ':id') }}".replace(':id', id) :
+                    "{{ route('admin.categories.store') }}";
 
                 let data = {
                     name: $("#name").val(),
@@ -215,8 +218,12 @@
                     method: method,
                     data: data,
                     success: function(response) {
+                        console.log(response);
+                        loadTree();
+                        if (response.type != 'update') clearForm();
+
                         notyf.success(response.message);
-                        clearForm(); // or reload category tree
+
                     },
                     error: function(xhr, status, error) {
                         console.log(xhr);
@@ -251,7 +258,25 @@
                 })
             }
 
-             // clear form
+            $(document).off('click', '.cat-label').on('click', '.cat-label', function(e) {
+                e.stopPropagation();
+                clearForm();
+                let id = $(this).data('id');
+                $.get("{{ route('admin.categories.show', ':id') }}".replace(':id', id), function(cat) {
+                    fillForm(cat);
+                });
+            })
+
+            function fillForm(cat) {
+                $('#name').val(cat.name);
+                $('#slug').val(cat.slug);
+                $('#is_active').prop('checked', cat.is_active);
+                loadParentDropdown(cat.parent_id, cat.id);
+                $('#category-id').val(cat.id);
+                $('#btn-delete').removeClass('d-none');
+            }
+
+            // clear form
             function clearForm() {
                 $("#name").val('');
                 $("#slug").val('');
