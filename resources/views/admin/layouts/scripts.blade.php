@@ -37,9 +37,9 @@
                             _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            if(response.status == 'success'){
-                                window.location.reload();
-                            }
+                            console.log(response);
+                            clearForm();
+                            notyf.success(response.message);
                         },
                         error: function(xhr, status, error) {
                             console.log(error);
@@ -49,4 +49,9 @@
             });
         });
     })
+
+    // notyf init
+    var notyf = new Notyf({
+        duration: 3000
+    });
 </script>
