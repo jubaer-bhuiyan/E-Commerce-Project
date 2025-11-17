@@ -131,6 +131,52 @@
 @push('scripts')
     <script>
         $(function() {
+
+            function loadTree() {
+                $('#tree-loading').removeClass('d-none');
+                $.get("{{ route('admin.categories.nested') }}", function(data) {
+                    $('#category-tree').empty();
+                    var html = '<div class="dd" id="nestable-tree">' + renderTree(data) + '</div>';
+                    $('#category-tree').html(html);
+                    $('#nestable-tree').nestable({
+                        maxDepth: 3
+                    }).off('change').on('change', function(e) {
+                        if (!$(e.target).hasClass('no-drag')) {
+                            console.log(e);
+                            updateOrder();
+                        }
+                    });
+                    $('#tree-loading').addClass('d-none');
+                })
+            }
+
+            function renderTree(categories) {
+                if (!categories.length) return;
+                let html = '<ol class="dd-list" style="margin-bottom: 0">';
+
+                categories.forEach(function(cat) {
+                    html += `<li class="dd-item custom-cat-item" data-id="${cat.id}">
+                                    <div class="dd-item-row custom-cat-row">
+                                        <div class="dd-handle custom-cat-handle" title="Drag to reorder">
+                                            <i class="ti ti-grip-horizontal"></i>
+                                        </div>
+                                        <i class="ti ti-folder cat-folder-icon"></i>
+                                        <div class="cat-label custom-cat-label" data-id="${cat.id}">
+                                            <span>${cat.name}</span>
+                                            ${cat.is_active ? '<span class="text-success ms-2" style="font-size: 10px">&#9679</span>' : '<span class="text-danger ms-2" style="font-size: 10px">&#9679</span>'}
+                                        </div>
+                                    </div>`;
+                    if (cat.children_nested && cat.children_nested.length) {
+                        html += renderTree(cat.children_nested);
+                    }
+                    html += `</li>`
+                })
+
+                html += '</ol>'
+
+                return html;
+            }
+
             $("#category-form").submit(function(e) {
                 e.preventDefault();
 
@@ -162,41 +208,42 @@
                     }
                 });
             });
+
+            // load parent dropdown
+            function loadParentDropdown(selectedId, excludeId) {
+                $.get("{{ route('admin.categories.nested') }}", function(data) {
+                    let options = '<option value="">None (Root)</option>';
+
+                    function addOptions(cats, prefix, depth) {
+                        cats.forEach(function(cat) {
+                            if (cat.id == excludeId) return;
+                            options +=
+                                `<option value="${cat.id}" ${selectedId == cat.id ? 'selected' : '' } > ${prefix}${cat.name}</option>`;
+                            if (cat.children_nested && cat.children_nested.length) {
+                                addOptions(cat.children_nested, prefix + '--', depth + 1);
+                            }
+                        })
+                    }
+
+                    addOptions(data, '', 0);
+
+                    $('#parent_id').html(options);
+
+                })
+            }
+
+             // clear form
+            function clearForm() {
+                $("#name").val('');
+                $("#slug").val('');
+                $("#parent_id").val('');
+                $("#is_active").prop('checked', true);
+                loadParentDropdown(null, null);
+            }
+
+            // Initial Load
+            clearForm();
+            loadTree();
         });
-
-        // load parent dropdown
-        function loadParentDropdown(selectedId, excludeId) {
-            $.get("{{ route('admin.categories.nested') }}", function(data) {
-                let options = '<option value="">None (Root)</option>';
-
-                function addOptions(cats, prefix, depth) {
-                    cats.forEach(function(cat) {
-                        if (cat.id == excludeId) return;
-                        options +=
-                            `<option value="${cat.id}" ${selectedId == cat.id ? 'selected' : '' } > ${prefix}${cat.name}</option>`;
-                        if (cat.children_nested && cat.children_nested.length) {
-                            addOptions(cat.children_nested, prefix + '--', depth + 1);
-                        }
-                    })
-                }
-
-                addOptions(data, '', 0);
-
-                $('#parent_id').html(options);
-
-            })
-        }
-
-        // clear form
-        function clearForm() {
-            $("#name").val('');
-            $("#slug").val('');
-            $("#parent_id").val('');
-            $("#is_active").prop('checked', true);
-            loadParentDropdown(null, null);
-        }
-
-        // Initial Load
-        clearForm();
     </script>
 @endpush
