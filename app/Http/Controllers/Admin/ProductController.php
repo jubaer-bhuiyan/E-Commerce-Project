@@ -51,7 +51,7 @@ class ProductController extends Controller implements HasMiddleware
         $tags = Tag::where('is_active', 1)->get();
         $categories = Category::getNested();
         return view('admin.product.create', compact('stores', 'brands', 'tags', 'categories'));
-    }
+    } 
 
     function store(ProductStoreRequest $request, string $type)
     {
