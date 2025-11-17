@@ -307,7 +307,22 @@
                 });
             })
 
+            // slug auto-generate
+            $('#name').on('input', function() {
+                if (!$('#category-id').val()) {
+                    $('#slug').val(slugify($(this).val()));
+                }
+            })
+
+            function slugify(text) {
+                return text.toString().toLowerCase().replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9\-]/g, '')
+                    .replace(/\-+/g, '-')
+                    .replace(/^\-+|\-+$/g, '');
+            }
+
             function fillForm(cat) {
+                $('#category-title').text('Edit Category');
                 $('#name').val(cat.name);
                 $('#slug').val(cat.slug);
                 $('#is_active').prop('checked', cat.is_active);
@@ -315,6 +330,14 @@
                 $('#category-id').val(cat.id);
                 $('#btn-delete').removeClass('d-none');
             }
+
+            $('#btn-new').on('click', function() {
+                clearForm();
+            })
+
+            $('#btn-cancel').on('click', function() {
+                clearForm();
+            })
 
             // clear form
             function clearForm() {
