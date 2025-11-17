@@ -1,5 +1,72 @@
 @extends('admin.layouts.app')
 
+@push('styles')
+    <style>
+        .dd-item.custom-cat-item {
+            border: none;
+            padding: 0;
+            margin-bottom: 0;
+            background: none;
+            border-radius: 0;
+        }
+
+        .dd-item-row.custom-cat-row {
+            user-select: text;
+            background: none;
+            gap: 4px;
+            border: 1px solid #e9ecef;
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+            padding-left: 0.75rem;
+            /* px-2 */
+            padding-right: 0.75rem;
+            padding-top: 0.25rem;
+            /* py-1 */
+            padding-bottom: 0.25rem;
+        }
+
+        .dd-handle.custom-cat-handle {
+            cursor: move;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            /* me-2 */
+        }
+
+        .cat-folder-icon {
+            font-size: 16px;
+            color: #6c757d;
+        }
+
+        .cat-label.custom-cat-label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex: 1 1 auto;
+        }
+
+        .dd-list .dd-list {
+            padding-left: 50px;
+        }
+
+        .dd-item-row {
+            margin-bottom: 5px;
+        }
+
+        .dd-item>button {
+            height: 44px;
+            margin: 0;
+            border: 1px solid #e9ecef;
+            background-color: #ededed;
+        }
+    </style>
+@endpush
+
 @section('contents')
     <div class="container-fluid mt-4">
         <div class="row">
