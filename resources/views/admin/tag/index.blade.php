@@ -21,7 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @forelse ($tags as $tag)
+                            @forelse ($tags as $tag)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $tag->name }}</td>
@@ -40,7 +40,7 @@
                                 <tr>
                                     <td colspan="4" class="text-center">No Data Available</td>
                                 </tr>
-                            @endforelse --}}
+                            @endforelse
 
                         </tbody>
                     </table>
