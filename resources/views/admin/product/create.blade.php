@@ -453,7 +453,7 @@
                 console.log($li);
 
                 if ($li.length) {
-                    const $siblings = $li.find('> ul > li input.category-check');
+                    const $siblings = $li.find('> ul > li input.category-check'); 
                     const checkedCount = $siblings.filter(':checked').length;
                     const $parent = $li.find('> label > input.category-check');
 
