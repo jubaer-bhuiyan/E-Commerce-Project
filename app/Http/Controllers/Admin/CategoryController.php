@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
-class CategoryController extends Controller
+class CategoryController extends Controller implements HasMiddleware
 {
+    use FileUploadTrait;
+
+    static function Middleware(): array
+    {
+        return [
+            new Middleware('permission:Category Management')
+        ];
+    }
     function index(): View
     {
         return view('admin.category.index');

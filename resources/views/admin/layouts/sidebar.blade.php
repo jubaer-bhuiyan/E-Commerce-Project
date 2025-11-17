@@ -225,7 +225,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item dropdown">
+                @if (hasPermission(['Category Management', 'Tags Management']))
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                             data-bs-auto-close="false" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -235,7 +236,7 @@
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
-                                @if (hasPermission(['Role Management']))
+                                @if (hasPermission(['Category Management']))
                                     <div class="dropdown-menu-column">
                                         <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
                                             Categories
@@ -244,7 +245,7 @@
                                 @endif
                             </div>
                             <div class="dropdown-menu-columns">
-                                @if (hasPermission(['Role Management']))
+                                @if (hasPermission(['Tags Management']))
                                     <div class="dropdown-menu-column">
                                         <a class="dropdown-item" href="{{ route('admin.tags.index') }}">
                                             Products Tags
@@ -254,75 +255,76 @@
                             </div>
                         </div>
                     </li>
+                    @endif
 
-                @if (hasPermission(['KYC Management']))
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                            data-bs-auto-close="false" role="button" aria-expanded="false">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <i class="ti ti-user-check"></i>
-                            </span>
-                            <span class="nav-link-title"> KYC Requests </span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-menu-columns">
-                                <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
-                                        All Requests
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.kyc.pending') }}">
-                                        Pending Requests
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.kyc.rejected') }}">
-                                        Rejected Requests
-                                    </a>
+                    @if (hasPermission(['KYC Management']))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                                data-bs-auto-close="false" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-user-check"></i>
+                                </span>
+                                <span class="nav-link-title"> KYC Requests </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
+                                            All Requests
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.kyc.pending') }}">
+                                            Pending Requests
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.kyc.rejected') }}">
+                                            Rejected Requests
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                @endif
-                @if (hasPermission(['Role Management', 'Role User Management']))
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                            data-bs-auto-close="false" role="button" aria-expanded="false">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <i class="ti ti-shield"></i>
+                        </li>
+                    @endif
+                    @if (hasPermission(['Role Management', 'Role User Management']))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                                data-bs-auto-close="false" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-shield"></i>
+                                </span>
+                                <span class="nav-link-title"> Access Management </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    @if (hasPermission(['Role Management']))
+                                        <div class="dropdown-menu-column">
+                                            <a class="dropdown-item" href="{{ route('admin.role.index') }}">
+                                                Role
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="dropdown-menu-columns">
+                                    @if (hasPermission(['Role User Management']))
+                                        <div class="dropdown-menu-column">
+                                            <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
+                                                Role User
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </li>
+                    @endif
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.settings.index') }}">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
                             </span>
-                            <span class="nav-link-title"> Access Management </span>
+                            <span class="nav-link-title"> Settings </span>
                         </a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-menu-columns">
-                                @if (hasPermission(['Role Management']))
-                                    <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route('admin.role.index') }}">
-                                            Role
-                                        </a>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="dropdown-menu-columns">
-                                @if (hasPermission(['Role User Management']))
-                                    <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
-                                            Role User
-                                        </a>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
                     </li>
-                @endif
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.settings.index') }}">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
-                        </span>
-                        <span class="nav-link-title"> Settings </span>
-                    </a>
-                </li>
 
 
-                {{-- <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -525,10 +527,12 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url({{ asset(auth('admin')->user()->avatar) }})"> </span>
+                    <span class="avatar avatar-sm"
+                        style="background-image: url({{ asset(auth('admin')->user()->avatar) }})"> </span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ auth('admin')->user()->name }}</div>
-                        <div class="mt-1 small text-secondary">{{ auth('admin')->user()?->getRoleNames()?->first() }}</div>
+                        <div class="mt-1 small text-secondary">{{ auth('admin')->user()?->getRoleNames()?->first() }}
+                        </div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

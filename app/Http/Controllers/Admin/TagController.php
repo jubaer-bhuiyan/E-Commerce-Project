@@ -11,8 +11,14 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Stringable;
 
-class TagController extends Controller
+class TagController extends Controller implements HasMiddleware
 {
+    static function Middleware(): array
+    {
+        return [
+            new Middleware('permission:Tags Management')
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
