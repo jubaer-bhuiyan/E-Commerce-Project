@@ -70,4 +70,10 @@
     var notyf = new Notyf({
         duration: 3000
     });
+
+    // select2 init
+    $(document).ready(function() {
+        $('.select2').select2();
+
+    });
 </script>
