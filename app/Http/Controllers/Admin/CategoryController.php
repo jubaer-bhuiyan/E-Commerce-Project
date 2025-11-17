@@ -125,6 +125,17 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
+    function destroy(int $id)
+    {
+        $category = Category::findOrFail($id);
+        if ($category->children()->count() > 0) {
+            return response()->json(['error' => true, 'message' => 'Category has children and cannot be deleted'], 422);
+        }
+
+        $category->delete();
+        return response()->json(['success' => true, 'message' => 'Category deleted successfully']);
+    }
+
     function getNestedCategories()
     {
         $categories = Category::getNested();

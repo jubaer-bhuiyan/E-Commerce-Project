@@ -258,6 +258,46 @@
                 })
             }
 
+            // delete category
+
+            $('#btn-delete').on('click', function() {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let id = $('#category-id').val();
+                        $.ajax({
+                            url: "{{ route('admin.categories.destroy', ':id') }}".replace(
+                                ':id', id),
+                            method: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                _method: 'DELETE'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    clearForm();
+                                    loadTree();
+                                    notyf.success(response.message);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+
+                                if (xhr.responseJSON.error) {
+                                    notyf.error(xhr.responseJSON.message);
+                                }
+                            }
+                        })
+                    }
+                });
+            })
+
             $(document).off('click', '.cat-label').on('click', '.cat-label', function(e) {
                 e.stopPropagation();
                 clearForm();
@@ -283,6 +323,8 @@
                 $("#parent_id").val('');
                 $("#is_active").prop('checked', true);
                 loadParentDropdown(null, null);
+                $('#category-id').val('');
+                $('#btn-delete').addClass('d-none');
             }
 
             // Initial Load
