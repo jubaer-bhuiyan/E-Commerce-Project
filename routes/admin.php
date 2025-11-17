@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\KycRequestController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -102,6 +103,9 @@ Route::middleware('auth:admin')
 
         /** Tags Routes */
         Route::resource('/tags', TagController::class);
+
+        /** Brand Routes */
+        Route::resource('/brands', BrandController::class);
 
 
         // Settings Routes

@@ -252,6 +252,14 @@
                                         </a>
                                     </div>
                                 @endif
+
+                                @if (hasPermission(['Tags Management']))
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('admin.brands.index') }}">
+                                            Brands
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </li>
