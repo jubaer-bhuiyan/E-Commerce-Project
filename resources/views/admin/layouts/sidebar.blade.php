@@ -225,7 +225,7 @@
                     </a>
                 </li>
 
-                @if (hasPermission(['Category Management', 'Tags Management']))
+                @if (hasPermission(['Category Management', 'Tags Management', 'Brand Management']))
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                             data-bs-auto-close="false" role="button" aria-expanded="false">
@@ -253,7 +253,7 @@
                                     </div>
                                 @endif
 
-                                @if (hasPermission(['Tags Management']))
+                                @if (hasPermission(['Brand Management']))
                                     <div class="dropdown-menu-column">
                                         <a class="dropdown-item" href="{{ route('admin.brands.index') }}">
                                             Brands

@@ -44,7 +44,7 @@
                 </form>
             </div>
             <div class="card-footer text-end">
-                <button class="btn btn-primary mt-3" onclick="$('brand-form').submit()">Update</button>
+                <button class="btn btn-primary mt-3" onclick="$('.brand-form').submit()">Update</button>
             </div>
         </div>
     </div>

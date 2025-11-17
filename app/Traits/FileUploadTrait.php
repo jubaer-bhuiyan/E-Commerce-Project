@@ -50,4 +50,16 @@ trait FileUploadTrait
 
         return $path;
     }
+
+    function deleteFile(string $path) : bool
+    {
+        if (File::exists(public_path($path))) {
+            File::delete(public_path($path));
+
+            return true;
+        }
+
+        return false;
+
+    }
 }
