@@ -631,7 +631,7 @@
                     <label for="" class="form-label">Type</label>
                     <select name="attribute_type" class="form-control main-type" id="">
                         <option value="text">Text</option>
-                        <option value="color">Color</option> 
+                        <option value="color">Color</option>
                     </select>
                 </div>
             </div>
@@ -742,7 +742,7 @@
                 })
 
                 tbody.empty();
-
+ 
                 labels.forEach(label => {
                     const pickerId = generateUniqueId();
                     let rowHtml = '';
