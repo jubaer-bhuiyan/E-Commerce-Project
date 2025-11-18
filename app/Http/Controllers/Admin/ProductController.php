@@ -523,7 +523,7 @@ class ProductController extends Controller implements HasMiddleware
         $this->createVariantsFromCombinations($product, $combinations);
     }
 
-    function getAttributeGroups(Product $product) 
+    function getAttributeGroups(Product $product)
     {
         $groupedAttributes = DB::table('product_attribute_values')
             ->where('product_id', $product->id)
@@ -581,7 +581,7 @@ class ProductController extends Controller implements HasMiddleware
         ]);
     }
 
-    function attachAttributesToVariant(ProductVariant $variant, array $combination)
+    function attachAttributesToVariant(ProductVariant $variant, array $combination) 
     {
         foreach ($combination as $attributeValue) {
             DB::table('product_variant_attribute_value')->insert([
