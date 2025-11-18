@@ -248,7 +248,7 @@ class ProductController extends Controller implements HasMiddleware
 
         return true;
     }
-
+ 
     function storeDigitalFile($file, $product_id, $fileName, $finalFileName)
     {
 

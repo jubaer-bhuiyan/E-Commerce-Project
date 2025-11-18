@@ -701,7 +701,7 @@
 
         })
 
-        // file chunking upload 
+        // file chunking upload
         const fileUploader = new Dropzone("#fileUploader", {
             url: "{{ route('admin.digital-products.file.upload') }}",
             paramName: "file",
