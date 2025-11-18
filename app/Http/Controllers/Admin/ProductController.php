@@ -121,7 +121,7 @@ class ProductController extends Controller implements HasMiddleware
         // dd($attributesValues);
         return view('admin.product.edit', compact('stores', 'brands', 'tags', 'categories', 'product', 'productCategoryIds', 'productTagIds', 'attributesWithValues', 'variants'));
     }
- 
+
     function editDigitalProduct(int $id)
     {
 
@@ -591,7 +591,7 @@ class ProductController extends Controller implements HasMiddleware
             ]);
         }
     }
-
+ 
     function updateVariants(Request $request, int $product)
     {
         $request->validate([

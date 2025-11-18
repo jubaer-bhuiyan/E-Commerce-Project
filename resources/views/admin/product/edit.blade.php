@@ -869,8 +869,8 @@
                     }
                 })
             })
-
-            // Initialize color pickers on load 
+ 
+            // Initialize color pickers on load
             $(document).ready(function() {
                 initColorPickersInContainer($('#accordion-default'));
             })
