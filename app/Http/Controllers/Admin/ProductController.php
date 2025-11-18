@@ -137,7 +137,7 @@ class ProductController extends Controller implements HasMiddleware
 
         return view('admin.product.digital-edit', compact('stores', 'brands', 'tags', 'categories', 'product', 'productCategoryIds', 'productTagIds'));
     }
- 
+
     function uploadDigitalProductFile(Request $request)
     {
         $file = $request->file('file');
