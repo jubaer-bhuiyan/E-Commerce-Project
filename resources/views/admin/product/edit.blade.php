@@ -742,14 +742,14 @@
                 })
 
                 tbody.empty();
- 
+
                 labels.forEach(label => {
                     const pickerId = generateUniqueId();
                     let rowHtml = '';
 
                     if (type === 'color') {
                         rowHtml = `
-                    <tr>
+                    <tr> 
                         <td>
                             <input type="text" name="label[]" id="" class="form-control label-input" class="Label" value="${label}">
                         </td>
