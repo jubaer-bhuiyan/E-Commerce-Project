@@ -25,7 +25,7 @@
                 <div class="col-md-6">
                     <label for="" class="form-label">Name</label>
                     <input type="text" class="form-control" value="{{ $attribute->name }}" name="attribute_name">
-                    <input type="hidden" value="{{ $attribute->id }}" name="attribute_id"> 
+                    <input type="hidden" value="{{ $attribute->id }}" name="attribute_id">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Type</label>
@@ -79,7 +79,7 @@
                 </tbody>
             </table>
             <div class="mt-2">
-                <button class="btn btn-sm btn-primary add-row-btn" type="button">Add Row</button>
+                <button class="btn btn-sm btn-primary add-row-btn" type="button">Add Row</button> 
                 <button class="btn btn-sm btn-success save-btn" type="button">Save</button>
             </div>
         </form>
