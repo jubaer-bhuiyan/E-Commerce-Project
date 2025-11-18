@@ -128,11 +128,11 @@ Route::middleware('auth:admin')
         Route::post('/products/variants/{product}/update', [ProductController::class, 'updateVariants'])->name('products.variants.update');
 
         /** Digital Product Routes */
-        Route::get('/products/digital/{product}/edit', [ProductController::class, 'editDigitalProduct'])->name('digital-products.edit');
+        Route::get('/products/digital/{product}/edit', [ProductController::class, 'editDigitalProduct'])->name('digital-products.edit'); 
         Route::post('/products/digital/file-upload', [ProductController::class, 'uploadDigitalProductFile'])->name('digital-products.file.upload');
         Route::delete('/products/digital/{product}/{file}', [ProductController::class, 'destroyDigitalProductFile'])->name('digital-products.file.destroy');
 
-        Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy'); 
+        Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 
         // Settings Routes

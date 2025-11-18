@@ -92,7 +92,7 @@ class ProductController extends Controller implements HasMiddleware
                 'redirect_url' => route('admin.products.edit', $product->id) . '#product-images',
                 'status' => 'success',
                 'message' => 'Product created successfully'
-            ]);
+            ]); 
         } else {
 
             return response()->json([
