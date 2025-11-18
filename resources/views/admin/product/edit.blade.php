@@ -655,7 +655,7 @@
 </div>
                 `;
 
-                $('#accordion-default').append(accordionItem);
+                $('#accordion-default').append(accordionItem); 
             })
 
 
@@ -792,7 +792,7 @@
                 }
             });
 
-            $(document).on('click', '.delete-btn', function() { 
+            $(document).on('click', '.delete-btn', function() {
                 const $accordionItem = $(this).closest('.accordion-item');
                 $accordionItem.find('.color-preview').each(function() {
                     destroyPicker($(this).attr('id'));

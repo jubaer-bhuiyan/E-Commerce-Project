@@ -357,7 +357,7 @@ class ProductController extends Controller implements HasMiddleware
 
 
     function storeAttributes(Request $request, Product $product)
-    {
+    { 
         $request->validate([
             'attribute_name' => ['required', 'string', 'max:255'],
             'attribute_type' => ['required', 'string', 'in:text,color'],
