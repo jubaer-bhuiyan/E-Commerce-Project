@@ -192,7 +192,7 @@
                                         <x-input-error :messages="$errors->get('to_date')" class="mt-2" />
                                     </div>
                                 </div>
-
+ 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="mb-3">
@@ -245,7 +245,7 @@
 
                     <div class="card mt-3" id="product-images">
                         <div class="card-header">
-                            <h3 class="card-title">Product Image</h3> 
+                            <h3 class="card-title">Product Image</h3>
                         </div>
                         <div class="card-body">
                             <div class="col-md-12">

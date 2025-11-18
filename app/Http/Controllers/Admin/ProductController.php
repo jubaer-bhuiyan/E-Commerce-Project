@@ -106,7 +106,7 @@ class ProductController extends Controller implements HasMiddleware
 
     function edit(int $id)
     {
-
+ 
         $product = Product::findOrFail($id);
         // dd($product->attributes);
         $productCategoryIds = $product->categories->pluck('id')->toArray();
@@ -316,7 +316,7 @@ class ProductController extends Controller implements HasMiddleware
             'redirect_url' => route('admin.products.index')
         ]);
     }
- 
+
     function uploadImages(Request $request, Product $product)
     {
 
