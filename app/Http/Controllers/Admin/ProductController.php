@@ -591,9 +591,9 @@ class ProductController extends Controller implements HasMiddleware
             ]);
         }
     }
- 
+
     function updateVariants(Request $request, int $product)
-    {
+    { 
         $request->validate([
             'variant_sku' => ['nullable', 'string', 'max:255'],
             'variant_price' => ['required', 'numeric'],
