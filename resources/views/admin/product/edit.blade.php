@@ -510,7 +510,7 @@
                     </div>
 
 
-                    <div class="card mb-3" style="position: sticky; top: 0;">
+                    <div class="card mb-3" style="position: sticky; top: 0;"> 
 
                         <div class="card-body">
                             <div class="col-md-12">
