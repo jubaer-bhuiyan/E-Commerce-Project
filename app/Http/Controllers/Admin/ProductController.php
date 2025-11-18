@@ -260,7 +260,7 @@ class ProductController extends Controller implements HasMiddleware
         $productFile->size = $file->getSize();
         $productFile->save();
     }
- 
+
     function destroyDigitalProductFile(int $productId, int $id)
     {
         try {
@@ -630,7 +630,7 @@ class ProductController extends Controller implements HasMiddleware
             $variant->delete();
         }
     }
-
+ 
     function destroy(Product $product)
     {
         if (Auth::user()->hasRole('Super Admin') || hasPermission(['Product Management'])) {
