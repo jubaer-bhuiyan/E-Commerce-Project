@@ -64,7 +64,7 @@ class Product extends Model
 
     function primaryVariant(): HasOne
     {
-        return $this->hasOne(ProductVariant::class)->where('is_default', 1);
+        return $this->hasOne(ProductVariant::class)->where('is_default', 1); 
     }
 
     function store(): BelongsTo
