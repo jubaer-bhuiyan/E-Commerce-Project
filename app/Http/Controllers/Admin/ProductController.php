@@ -518,7 +518,7 @@ class ProductController extends Controller implements HasMiddleware
             return;
         }
 
-        $combinations = $this->cartesianProduct($attributeGroups); 
+        $combinations = $this->cartesianProduct($attributeGroups);
 
         $this->createVariantsFromCombinations($product, $combinations);
     }
