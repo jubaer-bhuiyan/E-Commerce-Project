@@ -12,7 +12,7 @@
                 </svg>
             </div>
         </button>
- 
+
     </div>
     <div id="variant-{{ $variant->id }}" class="accordion-collapse collapse" data-bs-parent="#accordion-default"
         style="">
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="" class="form-label">Price</label>
+                        <label for="" class="form-label">Price</label> 
                         <input type="text" class="form-control" value="{{ $variant->price }}" name="variant_price">
                     </div>
 
