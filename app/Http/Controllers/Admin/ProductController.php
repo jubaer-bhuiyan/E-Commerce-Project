@@ -115,7 +115,7 @@ class ProductController extends Controller implements HasMiddleware
         $brands = Brand::select(['name', 'id'])->where('is_active', 1)->get();
         $tags = Tag::where('is_active', 1)->get();
         $categories = Category::getNested();
-
+ 
         $attributesWithValues = $product?->attributeWithValues ?? [];
         $variants = $product?->variants ?? [];
         // dd($attributesValues);
