@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                     @if ($attribute->type == 'color')
-                    @foreach ($attribute->values as $value)
+                    @foreach ($attribute->values as $value) 
                     <tr>
                                 <td>
                                     <input type="text" name="label[]" id="" class="form-control label-input"

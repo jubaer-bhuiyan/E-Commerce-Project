@@ -115,8 +115,8 @@ class ProductController extends Controller implements HasMiddleware
         $brands = Brand::select(['name', 'id'])->where('is_active', 1)->get();
         $tags = Tag::where('is_active', 1)->get();
         $categories = Category::getNested();
- 
-        $attributesWithValues = $product?->attributeWithValues ?? [];
+
+        $attributesWithValues = $product?->attributeWithValues ?? []; 
         $variants = $product?->variants ?? [];
         // dd($attributesValues);
         return view('admin.product.edit', compact('stores', 'brands', 'tags', 'categories', 'product', 'productCategoryIds', 'productTagIds', 'attributesWithValues', 'variants'));
