@@ -40,7 +40,7 @@
                             @forelse ($products as $product)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><img style="width: 50px" src="{{ asset($product->primaryImage?->path) }}" 
+                                    <td><img style="width: 50px" src="{{ asset($product->primaryImage?->path) }}"
                                             alt=""></td>
                                     <td>
                                         <div>
