@@ -749,7 +749,7 @@
 
                     if (type === 'color') {
                         rowHtml = `
-                    <tr> 
+                    <tr>
                         <td>
                             <input type="text" name="label[]" id="" class="form-control label-input" class="Label" value="${label}">
                         </td>
@@ -792,7 +792,7 @@
                 }
             });
 
-            $(document).on('click', '.delete-btn', function() {
+            $(document).on('click', '.delete-btn', function() { 
                 const $accordionItem = $(this).closest('.accordion-item');
                 $accordionItem.find('.color-preview').each(function() {
                     destroyPicker($(this).attr('id'));
