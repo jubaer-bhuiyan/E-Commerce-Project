@@ -192,7 +192,7 @@
                                         <x-input-error :messages="$errors->get('to_date')" class="mt-2" />
                                     </div>
                                 </div>
- 
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="mb-3">
@@ -508,7 +508,6 @@
                             </div>
                         </div>
                     </div>
-
 
 
                     <div class="card mb-3" style="position: sticky; top: 0;">

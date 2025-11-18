@@ -106,7 +106,7 @@ class ProductController extends Controller implements HasMiddleware
 
     function edit(int $id)
     {
- 
+
         $product = Product::findOrFail($id);
         // dd($product->attributes);
         $productCategoryIds = $product->categories->pluck('id')->toArray();
