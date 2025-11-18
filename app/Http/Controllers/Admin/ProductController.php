@@ -319,7 +319,7 @@ class ProductController extends Controller implements HasMiddleware
 
     function uploadImages(Request $request, Product $product)
     {
- 
+
         $request->validate([
             'file' => ['required', 'image', 'max:3048']
         ]);
@@ -346,7 +346,7 @@ class ProductController extends Controller implements HasMiddleware
         $this->deleteFile($image->path);
         $image->delete();
         return response()->json(['status' => 'success', 'message' => 'Image deleted successfully']);
-    }
+    } 
 
     function imagesReorder(Request $request)
     {
