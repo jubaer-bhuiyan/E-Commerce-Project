@@ -319,7 +319,7 @@ class ProductController extends Controller implements HasMiddleware
 
     function uploadImages(Request $request, Product $product)
     {
-
+ 
         $request->validate([
             'file' => ['required', 'image', 'max:3048']
         ]);

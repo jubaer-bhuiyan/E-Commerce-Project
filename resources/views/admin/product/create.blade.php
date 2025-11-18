@@ -507,7 +507,7 @@
             $('.product-form').on('submit', function(e) {
                 e.preventDefault();
                 let form = $(this);
-                let data = new FormData(form[0]); 
+                let data = new FormData(form[0]);
 
                 $.ajax({
                     method: 'POST',
