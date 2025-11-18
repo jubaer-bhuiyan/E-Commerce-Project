@@ -501,7 +501,7 @@
             }
         })
 
-
+ 
         // submit form
         $(function() {
             $('.product-form').on('submit', function(e) {
