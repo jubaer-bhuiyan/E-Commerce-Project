@@ -458,7 +458,7 @@
                     const $parent = $li.find('> label > input.category-check');
 
                     if (checkedCount === 0) {
-                        $parent.prop('checked', false).prop('indeterminate', false);
+                        $parent.prop('checked', false).prop('indeterminate', false); 
                     } else if (checkedCount === $siblings.length) {
                         $parent.prop('checked', true).prop('indeterminate', false);
                     } else {
@@ -518,7 +518,7 @@
                     processData: false,
                     success: function(response) {
                         if (response.status == 'success') {
-                            window.location.href = response.redirect_url; 
+                            window.location.href = response.redirect_url;
                         }
                     },
                     error: function(xhr, status, error) {
