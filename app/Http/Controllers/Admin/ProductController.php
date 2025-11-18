@@ -121,7 +121,7 @@ class ProductController extends Controller implements HasMiddleware
         // dd($attributesValues);
         return view('admin.product.edit', compact('stores', 'brands', 'tags', 'categories', 'product', 'productCategoryIds', 'productTagIds', 'attributesWithValues', 'variants'));
     }
-
+ 
     function editDigitalProduct(int $id)
     {
 
@@ -581,7 +581,7 @@ class ProductController extends Controller implements HasMiddleware
         ]);
     }
 
-    function attachAttributesToVariant(ProductVariant $variant, array $combination) 
+    function attachAttributesToVariant(ProductVariant $variant, array $combination)
     {
         foreach ($combination as $attributeValue) {
             DB::table('product_variant_attribute_value')->insert([

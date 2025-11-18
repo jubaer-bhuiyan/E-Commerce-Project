@@ -4,7 +4,7 @@
             data-bs-target="#variant-{{ $variant->id }}" aria-expanded="false">
             {{ $variant->name }} @if($variant->is_default == 1) <span class="badge bg-primary text-white">default</span> @endif  @if($variant->is_active == 1) <span class="badge bg-success text-white">Active</span> @endif
             <div class="accordion-button-toggle">
-                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-down --> 
+                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-down -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-1">
@@ -12,7 +12,7 @@
                 </svg>
             </div>
         </button>
-
+ 
     </div>
     <div id="variant-{{ $variant->id }}" class="accordion-collapse collapse" data-bs-parent="#accordion-default"
         style="">
