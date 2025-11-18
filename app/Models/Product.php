@@ -64,7 +64,7 @@ class Product extends Model
 
     function primaryVariant(): HasOne
     {
-        return $this->hasOne(ProductVariant::class)->where('is_default', 1); 
+        return $this->hasOne(ProductVariant::class)->where('is_default', 1);
     }
 
     function store(): BelongsTo
@@ -76,7 +76,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductFile::class);
     }
-
+ 
     function getEffectivePriceAndStock(): array
     {
         $getPriceData = function ($id = null, $price, $special_price, $in_stock, $qty) {
