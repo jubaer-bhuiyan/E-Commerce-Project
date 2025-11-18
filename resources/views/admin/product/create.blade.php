@@ -458,7 +458,7 @@
                     const $parent = $li.find('> label > input.category-check');
 
                     if (checkedCount === 0) {
-                        $parent.prop('checked', false).prop('indeterminate', false); 
+                        $parent.prop('checked', false).prop('indeterminate', false);
                     } else if (checkedCount === $siblings.length) {
                         $parent.prop('checked', true).prop('indeterminate', false);
                     } else {
@@ -508,7 +508,7 @@
                 e.preventDefault();
                 let form = $(this);
                 let data = new FormData(form[0]);
-
+ 
                 $.ajax({
                     method: 'POST',
                     url: "{{ route('admin.products.store', ['type' => ':type']) }}".replace(
