@@ -4,7 +4,7 @@
             data-bs-target="#collapse-{{ $attribute->id }}" aria-expanded="false">
             {{ $attribute->name }}
             <div class="accordion-button-toggle">
-                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-down -->
+                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-down --> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-1">
@@ -79,7 +79,7 @@
                 </tbody>
             </table>
             <div class="mt-2">
-                <button class="btn btn-sm btn-primary add-row-btn" type="button">Add Row</button> 
+                <button class="btn btn-sm btn-primary add-row-btn" type="button">Add Row</button>
                 <button class="btn btn-sm btn-success save-btn" type="button">Save</button>
             </div>
         </form>

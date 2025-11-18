@@ -122,7 +122,7 @@ Route::middleware('auth:admin')
 
         /** Product Attributes Routes */
         Route::post('/products/attributes/{product}/store', [ProductController::class, 'storeAttributes'])->name('products.attributes.store');
-        Route::delete('/products/attributes/{product}/{attribute}', [ProductController::class, 'destroyAttribute'])->name('products.attributes.destroy');
+        Route::delete('/products/attributes/{product}/{attribute}', [ProductController::class, 'destroyAttribute'])->name('products.attributes.destroy'); 
 
         /** Product Variants Routes */
         Route::post('/products/variants/{product}/update', [ProductController::class, 'updateVariants'])->name('products.variants.update');

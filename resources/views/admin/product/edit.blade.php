@@ -792,7 +792,7 @@
                 }
             });
 
-            $(document).on('click', '.delete-btn', function() {
+            $(document).on('click', '.delete-btn', function() { 
                 const $accordionItem = $(this).closest('.accordion-item');
                 $accordionItem.find('.color-preview').each(function() {
                     destroyPicker($(this).attr('id'));
@@ -844,7 +844,7 @@
             });
 
             // save attribute
-            $(document).on('click', '.save-btn', function(e) { 
+            $(document).on('click', '.save-btn', function(e) {
                 e.preventDefault();
                 const form = $(this).closest('form');
                 const data = form.serialize();

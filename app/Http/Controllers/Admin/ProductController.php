@@ -364,7 +364,7 @@ class ProductController extends Controller implements HasMiddleware
         ]);
 
         DB::beginTransaction();
- 
+
         try {
             if ($request->filled('attribute_id')) {
                 $this->updateExistingAttribute($request, $product);
@@ -467,7 +467,7 @@ class ProductController extends Controller implements HasMiddleware
         ]);
     }
 
-    function destroyAttribute(int $productId, int $attributeId)
+    function destroyAttribute(int $productId, int $attributeId) 
     {
         try {
             $product = Product::findOrFail($productId);
