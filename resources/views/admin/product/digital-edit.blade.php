@@ -300,7 +300,7 @@
                         <div class="card-body">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <div id="imageUploader" class="dropzone"></div> 
+                                    <div id="imageUploader" class="dropzone"></div>
                                     <div id="imagePreviewContainer" class="image-preview-container">
                                         @foreach ($product?->images ?? [] as $image)
                                             <div class="image-preview-item" data-image-id="{{ $image->id }}">
@@ -701,7 +701,7 @@
 
         })
 
-        // file chunking upload
+        // file chunking upload 
         const fileUploader = new Dropzone("#fileUploader", {
             url: "{{ route('admin.digital-products.file.upload') }}",
             paramName: "file",

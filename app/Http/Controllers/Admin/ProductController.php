@@ -92,7 +92,7 @@ class ProductController extends Controller implements HasMiddleware
                 'redirect_url' => route('admin.products.edit', $product->id) . '#product-images',
                 'status' => 'success',
                 'message' => 'Product created successfully'
-            ]); 
+            ]);
         } else {
 
             return response()->json([
@@ -137,7 +137,7 @@ class ProductController extends Controller implements HasMiddleware
 
         return view('admin.product.digital-edit', compact('stores', 'brands', 'tags', 'categories', 'product', 'productCategoryIds', 'productTagIds'));
     }
-
+ 
     function uploadDigitalProductFile(Request $request)
     {
         $file = $request->file('file');
