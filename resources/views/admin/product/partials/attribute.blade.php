@@ -25,7 +25,7 @@
                 <div class="col-md-6">
                     <label for="" class="form-label">Name</label>
                     <input type="text" class="form-control" value="{{ $attribute->name }}" name="attribute_name">
-                    <input type="hidden" value="{{ $attribute->id }}" name="attribute_id">
+                    <input type="hidden" value="{{ $attribute->id }}" name="attribute_id"> 
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Type</label>
@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                     @if ($attribute->type == 'color')
-                    @foreach ($attribute->values as $value) 
+                    @foreach ($attribute->values as $value)
                     <tr>
                                 <td>
                                     <input type="text" name="label[]" id="" class="form-control label-input"
