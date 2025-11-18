@@ -749,7 +749,7 @@
             }
 
         })
- 
+
         $(document).on('click', '.dz-remove', function() {
             const id = $(this).attr('data-file-id');
             $.ajax({
