@@ -844,7 +844,7 @@
             });
 
             // save attribute
-            $(document).on('click', '.save-btn', function(e) {
+            $(document).on('click', '.save-btn', function(e) { 
                 e.preventDefault();
                 const form = $(this).closest('form');
                 const data = form.serialize();
@@ -869,7 +869,7 @@
                     }
                 })
             })
- 
+
             // Initialize color pickers on load
             $(document).ready(function() {
                 initColorPickersInContainer($('#accordion-default'));
