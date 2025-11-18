@@ -267,7 +267,7 @@
 
                     <div class="card mt-3" id="product-images">
                         <div class="card-header">
-                            <h3 class="card-title">Product Attributes</h3> 
+                            <h3 class="card-title">Product Attributes</h3>
                         </div>
                         <div class="card-body">
                             <div class="col-md-12">
@@ -631,7 +631,7 @@
                     <label for="" class="form-label">Type</label>
                     <select name="attribute_type" class="form-control main-type" id="">
                         <option value="text">Text</option>
-                        <option value="color">Color</option>
+                        <option value="color">Color</option> 
                     </select>
                 </div>
             </div>
