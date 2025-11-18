@@ -318,7 +318,7 @@
                                 </div>
                             </div>
                         </div>
- 
+
                     </div>
                     <div class="card mb-3">
                         <div class="card-header">
@@ -870,7 +870,7 @@
                 })
             })
 
-            // Initialize color pickers on load
+            // Initialize color pickers on load 
             $(document).ready(function() {
                 initColorPickersInContainer($('#accordion-default'));
             })
