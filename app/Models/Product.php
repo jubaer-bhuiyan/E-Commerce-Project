@@ -28,7 +28,7 @@ class Product extends Model
         return $this->hasOne(ProductImage::class)->orderBy('order');
     }
 
-    function images(): HasMany
+    function images(): HasMany 
     {
         return $this->hasMany(ProductImage::class)->orderBy('order');
     }

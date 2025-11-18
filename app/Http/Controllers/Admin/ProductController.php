@@ -316,7 +316,7 @@ class ProductController extends Controller implements HasMiddleware
             'redirect_url' => route('admin.products.index')
         ]);
     }
-
+ 
     function uploadImages(Request $request, Product $product)
     {
 
@@ -346,7 +346,7 @@ class ProductController extends Controller implements HasMiddleware
         $this->deleteFile($image->path);
         $image->delete();
         return response()->json(['status' => 'success', 'message' => 'Image deleted successfully']);
-    } 
+    }
 
     function imagesReorder(Request $request)
     {
