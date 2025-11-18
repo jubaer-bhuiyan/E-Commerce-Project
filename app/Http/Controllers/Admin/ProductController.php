@@ -467,7 +467,7 @@ class ProductController extends Controller implements HasMiddleware
         ]);
     }
 
-    function destroyAttribute(int $productId, int $attributeId) 
+    function destroyAttribute(int $productId, int $attributeId)
     {
         try {
             $product = Product::findOrFail($productId);
@@ -523,7 +523,7 @@ class ProductController extends Controller implements HasMiddleware
         $this->createVariantsFromCombinations($product, $combinations);
     }
 
-    function getAttributeGroups(Product $product)
+    function getAttributeGroups(Product $product) 
     {
         $groupedAttributes = DB::table('product_attribute_values')
             ->where('product_id', $product->id)
