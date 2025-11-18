@@ -749,7 +749,7 @@
             }
 
         })
-
+ 
         $(document).on('click', '.dz-remove', function() {
             const id = $(this).attr('data-file-id');
             $.ajax({
@@ -763,7 +763,7 @@
                     window.location.reload();
 
                 },
-                error: function(xhr, status, error) { 
+                error: function(xhr, status, error) {
                     console.log(xhr);
                 }
             })

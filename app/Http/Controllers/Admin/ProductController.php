@@ -43,7 +43,7 @@ class ProductController extends Controller implements HasMiddleware
         $products = Product::orderBy('id', 'desc')->paginate(30);
         return view('admin.product.index', compact('products'));
     }
- 
+
     function create(): View
     {
         $stores = Store::select(['name', 'id'])->get();
@@ -260,7 +260,7 @@ class ProductController extends Controller implements HasMiddleware
         $productFile->size = $file->getSize();
         $productFile->save();
     }
-
+ 
     function destroyDigitalProductFile(int $productId, int $id)
     {
         try {
