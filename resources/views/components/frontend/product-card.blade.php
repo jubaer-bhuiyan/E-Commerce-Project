@@ -26,9 +26,9 @@
             </div>
         </div>
         <div class="product-content-wrap">
-            <div class="product-category">
-                <a href="shop-grid-right.html">Fashion</a>
-            </div>
+            {{-- <div class="product-category">
+                <a href="shop-grid-right.html">{{ $product->category->name }}</a>
+            </div> --}}
             <h2><a href="shop-product-right.html">{{ $product->name }}</a></h2>
             <div class="product-rate-cover">
                 <div class="product-rate d-inline-block">
@@ -37,12 +37,25 @@
                 <span class="font-small ml-5 text-muted"> (4.0)</span>
             </div>
             <div>
-                <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
+                <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product->store->name }}</a></span>
             </div>
             <div class="product-card-bottom">
                 <div class="product-price">
-                    <span>$28.85</span>
-                    <span class="old-price">$32.8</span>
+                    @php
+                        $price = $product->getEffectivePriceAndStock();
+                    @endphp
+
+                    @if ($price['in_stock'])
+
+                        @if ($price['old_price'] > 0)
+                            <span>${{ $price['price'] }}</span>
+                            <span class="old-price">${{ $price['old_price'] }}</span>
+                        @else
+                            <span>${{ $price['price'] }}</span>
+                        @endif
+                    @else
+                        <span class="text-danger">Out of stock</span>
+                    @endif
                 </div>
                 <div class="add-cart">
                     <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
