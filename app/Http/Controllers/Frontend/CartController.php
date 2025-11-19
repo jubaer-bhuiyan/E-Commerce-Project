@@ -32,7 +32,7 @@ class CartController extends Controller
     function productModal(Product $product): String
     {
 
-        $modal = view('components.frontend.product-quick-view-modal', compact('product'))->render();
+        $modal = view('components.frontend.product-quick-view-modal', compact('product'))->render(); 
 
         return $modal;
     }
