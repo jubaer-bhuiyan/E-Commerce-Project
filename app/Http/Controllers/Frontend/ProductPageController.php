@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 
 class ProductPageController extends Controller
 {
-    //
     function index(Request $request): View
     {
         $products = Product::with(['images' => function($query){
@@ -21,6 +20,13 @@ class ProductPageController extends Controller
         }, 'store:id,name', 'primaryVariant'])
         ->where('status', 'active')->where('approved_status', 'approved')->paginate(20);
         return view('frontend.pages.product', compact('products'));
+    }
+
+    function show(string $slug): View
+    {
+        $product = Product::with(['images:id,path,product_id'])
+            ->where('slug', $slug)->firstOrFail();
+        return view('frontend.pages.product-show', compact('product'));
     }
 
 }

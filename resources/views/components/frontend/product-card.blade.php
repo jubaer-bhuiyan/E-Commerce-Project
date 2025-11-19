@@ -2,7 +2,7 @@
     <div class="product-cart-wrap mb-30">
         <div class="product-img-action-wrap">
             <div class="product-img product-img-zoom">
-                <a href="shop-product-right.html">
+                <a href="{{ route('products.show', $product->slug) }}">
                     @foreach($product->images as $key => $image)
                     <img class="{{  $key == 0 ? 'default-img' : 'hover-img' }}" src="{{ asset($image->path) }}" alt="" />
                     @endforeach
@@ -29,7 +29,7 @@
             {{-- <div class="product-category">
                 <a href="shop-grid-right.html">{{ $product->category->name }}</a>
             </div> --}}
-            <h2><a href="shop-product-right.html">{{ $product->name }}</a></h2>
+            <h2><a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a></h2>
             <div class="product-rate-cover">
                 <div class="product-rate d-inline-block">
                     <div class="product-rating" style="width: 90%"></div>
