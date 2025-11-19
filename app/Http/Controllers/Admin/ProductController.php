@@ -79,7 +79,7 @@ class ProductController extends Controller implements HasMiddleware
         $product->is_hot = $request->has('is_hot') ? 1 : 0;
         $product->is_new = $request->has('is_new') ? 1 : 0;
         $product->save();
-
+ 
         /** Attach categories */
         $product->categories()->sync($request->categories);
 
@@ -630,7 +630,7 @@ class ProductController extends Controller implements HasMiddleware
             $variant->delete();
         }
     }
- 
+
     function destroy(Product $product)
     {
         if (Auth::user()->hasRole('Super Admin') || hasPermission(['Product Management'])) {
