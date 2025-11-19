@@ -123,13 +123,14 @@
                                     </div>
                                 </div>
                                 <div class="font-xs">
-                                    <ul class="mr-50 float-start">
-                                        <li class="mb-5">Type: <span class="text-brand">eCommerce</span></li>
-                                        <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2024</span></li>
-                                        <li>LIFE: <span class="text-brand">70 days</span></li>
-                                    </ul>
                                     <ul class="float-start">
-                                        <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
+                                        <li class="mb-5">SKU: <a href="javascript:;" class="sku">
+                                                @if ($product?->primaryVariant)
+                                                    {{ $product?->primaryVariant?->sku }}
+                                                @else
+                                                    {{ $product->sku }}
+                                                @endif
+                                            </a></li>
                                         <li class="mb-5">Tags:
                                             @foreach ($product->tags as $tag)
                                                 <a href="#" rel="tag">{{ $tag->name }}</a>
@@ -177,10 +178,10 @@
 
                                 <div class="tab-pane fade" id="Vendor-info">
                                     <div class="vendor-logo d-flex mb-30 align-items-center">
-                                        <img src="assets/imgs/vendor/vendor-3.png" alt="" />
+                                        <img src="{{ asset($product->store->logo) }}" alt="" />
                                         <div class="vendor-name ml-15">
                                             <h6>
-                                                <a href="vendor-details-2.html">Noodles Co.</a>
+                                                <a href="vendor-details-2.html">{{ $product->store->name }}</a>
                                             </h6>
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
@@ -191,33 +192,25 @@
                                         </div>
                                     </div>
                                     <ul class="contact-infor mb-50">
-                                        <li><img src="assets/imgs/theme/icons/icon-location.svg"
-                                                alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave
-                                                undefined Kent, Utah 53127 United States</span></li>
-                                        <li><img src="assets/imgs/theme/icons/icon-contact.svg"
-                                                alt="" /><strong>Contact Seller:</strong><span>(+91) -
-                                                540-025-553</span></li>
+                                        @if ($product->store->address)
+                                            <li><img src="{{ asset('assets/frontend/dist/imgs/theme/icons/icon-location.svg') }}"
+                                                    alt="" /><strong>Address: </strong>
+                                                <span>{{ $product->store->address }}</span>
+                                            </li>
+                                        @endif
+                                        @if ($product->store->phone)
+                                            <li><img src="{{ asset('assets/frontend/dist/imgs/theme/icons/icon-contact.svg') }}"
+                                                    alt="" /><strong>Phone:</strong><span>
+                                                    {{ $product->store->phone }} </span></li>
+                                        @endif
+                                        @if ($product->store->email)
+                                            <li><img src="{{ asset('assets/frontend/dist/imgs/theme/icons/icon-email.svg') }}"
+                                                    alt="" /><strong>Email:</strong><span>
+                                                    {{ $product->store->email }} </span></li>
+                                        @endif
                                     </ul>
-                                    <div class="d-flex mb-55">
-                                        <div class="mr-30">
-                                            <p class="text-brand font-xs">Rating</p>
-                                            <h4 class="mb-0">92%</h4>
-                                        </div>
-                                        <div class="mr-30">
-                                            <p class="text-brand font-xs">Ship on time</p>
-                                            <h4 class="mb-0">100%</h4>
-                                        </div>
-                                        <div>
-                                            <p class="text-brand font-xs">Chat response</p>
-                                            <h4 class="mb-0">89%</h4>
-                                        </div>
-                                    </div>
-                                    <p>Noodles & Company is an American fast-casual restaurant that offers
-                                        international and American noodle dishes and pasta in addition to soups and
-                                        salads. Noodles & Company was founded in 1995 by Aaron Kennedy and is
-                                        headquartered in Broomfield, Colorado. The company went public in 2013 and
-                                        recorded a $457 million revenue in 2017.In late 2018, there were 460 Noodles
-                                        & Company locations across 29 states and Washington, D.C.</p>
+
+                                    <p>{{ $product->store->short_description }}</p>
                                 </div>
                                 <div class="tab-pane fade" id="Reviews">
                                     <!--Comments-->
