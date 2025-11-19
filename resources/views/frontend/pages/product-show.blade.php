@@ -42,8 +42,28 @@
                                 </div>
                                 <div class="clearfix product-price-cover">
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">$0</span>
-
+                                        @if ($product->primaryVariant)
+                                            @if ($product->primaryVariant?->special_price > 0)
+                                                <span
+                                                    class="current-price text-brand">${{ $product->primaryVariant?->special_price }}</span>
+                                                <span
+                                                    class="old-price font-md ml-15">${{ $product->primaryVariant?->price }}</span>
+                                            @else
+                                                <span
+                                                    class="current-price text-brand">${{ $product->primaryVariant?->price }}</span>
+                                            @endif
+                                        @else
+                                            @if ($product->special_price > 0)
+                                                <span class="current-price text-brand">
+                                                    ${{ $product->special_price }}
+                                                </span>
+                                                <span class="old-price font-md ml-15">
+                                                    ${{ $product->price }}
+                                                </span>
+                                            @else
+                                                <span class="current-price text-brand">${{ $product->price }}</span>
+                                            @endif
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="short-desc mb-30">
