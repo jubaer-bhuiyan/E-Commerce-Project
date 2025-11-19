@@ -26,7 +26,15 @@ class ProductPageController extends Controller
     {
         $product = Product::with(['images:id,path,product_id'])
             ->where('slug', $slug)->firstOrFail();
-        return view('frontend.pages.product-show', compact('product'));
+        $relatedProducts = Product::whereHas('categories', function ($query) use ($product) {
+            $query->whereIn('categories.id', $product->categories->pluck('id')->toArray());
+        })
+            ->where('id', '!=', $product->id)
+            ->where(['status' => 'active', 'approved_status' => 'approved'])
+            ->distinct()
+            ->take(6)
+            ->get();
+        return view('frontend.pages.product-show', compact('product', 'relatedProducts'));
     }
 
 }

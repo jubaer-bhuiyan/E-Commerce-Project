@@ -1,10 +1,14 @@
-<div class="col-6 col-xxl-3 col-lg-4 col-md-6 col-sm-6">
+@props(['class' => 'col-6 col-xxl-3 col-lg-4 col-md-4 col-sm-6'])
+
+<div {{ $attributes }} class="{{ $class }}">
+    <!--product card-->
     <div class="product-cart-wrap mb-30">
         <div class="product-img-action-wrap">
             <div class="product-img product-img-zoom">
                 <a href="{{ route('products.show', $product->slug) }}">
-                    @foreach($product->images as $key => $image)
-                    <img class="{{  $key == 0 ? 'default-img' : 'hover-img' }}" src="{{ asset($image->path) }}" alt="" />
+                    @foreach ($product->images as $key => $image)
+                        <img class="{{ $key == 0 ? 'default-img' : 'hover-img' }}" src="{{ asset($image->path) }}"
+                            alt="" />
                     @endforeach
                     {{-- <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="" /> --}}
                 </a>
@@ -37,7 +41,8 @@
                 <span class="font-small ml-5 text-muted"> (4.0)</span>
             </div>
             <div>
-                <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product->store->name }}</a></span>
+                <span class="font-small text-muted">By <a
+                        href="vendor-details-1.html">{{ $product->store->name }}</a></span>
             </div>
             <div class="product-card-bottom">
                 <div class="product-price">
