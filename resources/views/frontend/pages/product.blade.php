@@ -87,7 +87,25 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     <script>
+        // notyf init
+        var notyf = new Notyf({
+            duration: 3000
+        });
+
+
         $(function() {
+
+            function handleErrors(errors) {
+                if (errors?.message) {
+                    notyf.error(errors.message);
+                } else if (errors?.error) {
+                    Object.values(errors.errors).forEach((err) => notyf.error(err[0]));
+                } else {
+                    notyf.error('Something went wrong');
+                }
+            }
+
+            
             $(document).on('click', '.add_to_cart', function(e) {
                 e.preventDefault();
                 var self = $(this);
@@ -131,6 +149,133 @@
                     }
                 })
             });
+
+            function initVariantJs() {
+
+                const variantsData = JSON.parse($('#variants-data').val());
+                let selectedValues = new Set();
+
+
+                $('.list-filter').each(function() {
+                    $(this).find('a').on('click', function(event) {
+                        event.preventDefault();
+                        $(this).parent().siblings().removeClass('active');
+                        $(this).parent().addClass('active');
+                        $(this).parents('.attr-detail').find('.current-size').text($(this).text());
+                        $(this).parents('.attr-detail').find('.current-color').text($(this).attr(
+                            'data-color'));
+                    });
+                });
+
+                $('.detail-qty').each(function() {
+                    var qtyval = parseInt($(this).find(".qty-val").val(), 10);
+                    var $qtyInput = $(this).find(".qty-val");
+
+                    $(this).find('.qty-up').on('click', function(event) {
+                        event.preventDefault();
+                        qtyval = qtyval + 1;
+                        $qtyInput.val(qtyval);
+                    });
+
+                    $(this).find(".qty-down").on("click", function(event) {
+                        event.preventDefault(); /*  */
+                        qtyval = Math.max(1, qtyval - 1);
+                        $qtyInput.val(qtyval);
+                    });
+                });
+
+                function selectDefaultVariant() {
+                    if (variantsData.length > 0) {
+                        const defaultVariant = variantsData[0];
+
+                        defaultVariant.attribute_values.forEach(valueId => {
+                            const $badge = $(`.attribute-badge[data-value="${valueId}"]`);
+                            $badge.addClass('active');
+                            selectedValues.add(valueId);
+                        })
+                    }
+
+                    updatePrice();
+                }
+
+                //  $('.attribute-badge').on('click', function() {
+
+                //  })
+
+                $(document).on('click', '.attribute-badge', function() {
+                    console.log('working');
+                    const $attributeGroup = $(this).closest('.attribute-group');
+
+                    selectedValues = new Set(
+                        $('.attribute-badge.active').map(function() {
+                            return parseInt($(this).attr('data-value'));
+                        }).get()
+                    );
+
+                    updatePrice();
+                })
+
+                function updatePrice() {
+                    const selectedValuesArray = Array.from(selectedValues);
+
+                    const matchingVariant = variantsData.find(variant => {
+                        const variantValues = new Set(variant.attribute_values);
+                        return selectedValuesArray.length === variantValues.size && selectedValuesArray
+                            .every(
+                                value => variantValues.has(value));
+                    })
+
+                    if (matchingVariant) {
+
+                        $('.button-add-to-cart').attr('data-variant', matchingVariant.id);
+
+
+                        if (matchingVariant.quantity > 0 && matchingVariant.manage_stock == 1) {
+                            $('.stock-qty').text(matchingVariant.quantity);
+                        } else if (matchingVariant.manage_stock == 0 && matchingVariant.in_stock == 1) {
+                            $('.stock-qty').text('Unlimited');
+                        } else {
+                            $('.stock-qty').text('0');
+                        }
+
+                        $('.sku').text(matchingVariant.sku);
+
+
+                        if (matchingVariant.in_stock == 0 || matchingVariant.in_stock == null || matchingVariant
+                            .quantity < 1 && matchingVariant.manage_stock == 1) {
+                            html = `<div class="product-price modal-price primary-color float-left">
+                            <span class="current-price text-brand">Out Of Stock</span>
+                        </div>`
+
+                            $('.modal-price').replaceWith(html);
+
+                            return;
+                        }
+
+                        if (matchingVariant.special_price > 0) {
+                            var html = `
+                        <div class="product-price modal-price primary-color float-left">
+                                <span class="current-price text-brand">$${matchingVariant.special_price}</span>
+                                    <span>
+                                        <span class="old-price font-md ml-15">$${matchingVariant.price}</span>
+                                    </span>
+                        </div>
+                        `
+                        } else {
+                            var html = `
+                        <div class="product-price modal-price primary-color float-left">
+                            <span class="current-price text-brand">$${matchingVariant.price}</span>
+                        </div>
+                        `
+                        }
+
+                        $('.modal-price').replaceWith(html);
+                    }
+
+                }
+
+                selectDefaultVariant();
+            }
         });
     </script>
 @endpush
