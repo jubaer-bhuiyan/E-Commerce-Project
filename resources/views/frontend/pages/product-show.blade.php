@@ -52,26 +52,25 @@
                                 <div class="short-desc mb-30">
                                     <p class="font-lg">{!! $product->short_description !!}</p>
                                 </div>
-                                <div class="attr-detail attr-size mb-20">
-                                    <strong class="mr-10">Size: </strong>
-                                    <ul class="list-filter size-filter font-small">
-                                        <li class="active"><a href="#">S</a></li>
-                                        <li><a href="#">M</a></li>
-                                        <li><a href="#">L</a></li>
-                                        <li><a href="#">XL</a></li>
-                                        <li><a href="#">XXL</a></li>
-                                    </ul>
-                                </div>
-                                <div class="attr-detail attr-size mb-30">
-                                    <strong class="mr-10">Color: </strong>
-                                    <ul class="color_filter list-filter size-filter font-small">
-                                        <li><a href="#" style="background: #000;"></a></li>
-                                        <li class="active"><a href="#" style="background: #ff9010;"></a></li>
-                                        <li><a href="#" style="background: #1C63E5;"></a></li>
-                                        <li><a href="#" style="background: #3BB77E;"></a></li>
-                                        <li><a href="#" style="background: #f74b81;"></a></li>
-                                    </ul>
-                                </div>
+                                @foreach ($product->attributeWithValues as $attribute)
+                                    <div class="attr-detail attr-size mb-20">
+                                        <strong class="mr-10">{{ $attribute->name }}: </strong>
+                                        <ul class=" attribute-group color_filter list-filter size-filter font-small"
+                                            data-attribute="{{ $attribute->id }}">
+                                            @foreach ($attribute->values as $value)
+                                                @if ($attribute->type == 'color')
+                                                    <li class="attribute-badge" data-value="{{ $value->id }}"><a
+                                                            href="#" style="background: {{ $value->color }};"></a>
+                                                    </li>
+                                                @else
+                                                    <li class="attribute-badge" data-value="{{ $value->id }}"><a
+                                                            href="#">{{ $value->value }}</a></li>
+                                                @endif
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                @endforeach
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
