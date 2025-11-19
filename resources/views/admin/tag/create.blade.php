@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.tags.store') }}" method="POST" class="tag-form">
+                <form action="{{ route('admin.tags.store') }}" method="POST" class="tag-form"> 
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
