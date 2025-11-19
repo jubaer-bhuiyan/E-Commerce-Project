@@ -71,6 +71,25 @@
                                         </ul>
                                     </div>
                                 @endforeach
+
+                                <input type="hidden" id="variants-data"
+                                    value="{{ json_encode(
+                                        $product->variants->map(function ($variant) {
+                                            return [
+                                                'id' => $variant->id,
+                                                'price' => $variant->price,
+                                                'special_price' => $variant->special_price,
+                                                'manage_stock' => $variant->manage_stock,
+                                                'quantity' => $variant->qty,
+                                                'sku' => $variant->sku,
+                                                'in_stock' => $variant->in_stock,
+                                                'is_default' => $variant->is_default,
+                                                'attribute_values' => $variant->attributeValues->pluck('id'),
+                                            ];
+                                        }),
+                                    ) }}">
+
+
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
@@ -688,3 +707,32 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+        // notyf init
+        var notyf = new Notyf({
+            duration: 3000
+        });
+
+         $(function() {
+            const variantsData = JSON.parse($('#variants-data').val());
+            let selectedValues = new Set();
+
+            function selectDefaultVariant() {
+                if (variantsData.length > 0) {
+                    const defaultVariant = variantsData[0];
+
+                    defaultVariant.attribute_values.forEach(valueId => {
+                        const $badge = $(`.attribute-badge[data-value="${valueId}"]`);
+                        $badge.addClass('active');
+                        selectedValues.add(valueId);
+                    })
+                }
+
+                updatePrice();
+            }
+         });
+    </script>
+@endpush
