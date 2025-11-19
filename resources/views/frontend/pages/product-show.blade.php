@@ -42,11 +42,8 @@
                                 </div>
                                 <div class="clearfix product-price-cover">
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">$100</span>
-                                        <span>
-                                            <span class="save-price font-md color3 ml-15">25% Off</span>
-                                            <span class="old-price font-md ml-15">$75</span>
-                                        </span>
+                                        <span class="current-price text-brand">$0</span>
+
                                     </div>
                                 </div>
                                 <div class="short-desc mb-30">
