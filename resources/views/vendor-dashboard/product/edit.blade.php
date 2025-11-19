@@ -812,7 +812,7 @@
                 e.preventDefault();
                 const form = $(this).closest('form');
                 const data = form.serialize();
-
+ 
                 $.ajax({
                     url: "{{ route('vendor.products.attributes.store', ':id') }}".replace(':id',
                         '{{ $product->id }}'),
