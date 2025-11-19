@@ -16,7 +16,11 @@ class ProductPageController extends Controller
     //
     function index(Request $request): View
     {
-        return view('frontend.pages.product');
+        $products = Product::with(['images' => function($query){
+            $query->limit(2);
+        }])
+        ->where('status', 'active')->where('approved_status', 'approved')->paginate(20);
+        return view('frontend.pages.product', compact('products'));
     }
 
 }
