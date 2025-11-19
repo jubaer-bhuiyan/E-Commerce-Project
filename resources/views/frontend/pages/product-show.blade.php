@@ -746,7 +746,65 @@
                 updatePrice();
             })
 
+            function updatePrice() {
+                const selectedValuesArray = Array.from(selectedValues);
+
+                const matchingVariant = variantsData.find(variant => {
+                    const variantValues = new Set(variant.attribute_values);
+                    return selectedValuesArray.length === variantValues.size && selectedValuesArray.every(
+                        value => variantValues.has(value));
+                })
+
+                if (matchingVariant) {
+                    $('.button-add-to-cart').attr('data-variant', matchingVariant.id);
+
+
+                    if (matchingVariant.quantity > 0 && matchingVariant.manage_stock == 1) {
+                        $('.stock-qty').text(matchingVariant.quantity);
+                    } else if (matchingVariant.manage_stock == 0 && matchingVariant.in_stock == 1) {
+                        $('.stock-qty').text('Unlimited');
+                    } else {
+                        $('.stock-qty').text('0');
+                    }
+
+                    $('.sku').text(matchingVariant.sku);
+
+
+                    if (matchingVariant.in_stock == 0 || matchingVariant.in_stock == null || matchingVariant
+                        .quantity < 1 && matchingVariant.manage_stock == 1) {
+                        html = `<div class="product-price primary-color float-left">
+                            <span class="current-price text-brand">Out Of Stock</span>
+                        </div>`
+
+                        $('.product-price').replaceWith(html);
+
+                        return;
+                    }
+
+                    if (matchingVariant.special_price > 0) {
+                        var html = `
+                        <div class="product-price primary-color float-left">
+                                <span class="current-price text-brand">$${matchingVariant.special_price}</span>
+                                    <span>
+                                        <span class="old-price font-md ml-15">$${matchingVariant.price}</span>
+                                    </span>
+                        </div>
+                        `
+                    } else {
+                        var html = `
+                        <div class="product-price primary-color float-left">
+                            <span class="current-price text-brand">$${matchingVariant.price}</span>
+                        </div>
+                        `
+                    }
+
+                    $('.product-price').replaceWith(html);
+                }
+
+            }
+
             selectDefaultVariant();
+            
          });
     </script>
 @endpush
