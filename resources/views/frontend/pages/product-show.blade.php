@@ -733,6 +733,20 @@
 
                 updatePrice();
             }
+
+            $('.attribute-badge').on('click', function() {
+                const $attributeGroup = $(this).closest('.attribute-group');
+
+                selectedValues = new Set(
+                    $('.attribute-badge.active').map(function() {
+                        return parseInt($(this).attr('data-value'));
+                    }).get()
+                );
+
+                updatePrice();
+            })
+
+            selectDefaultVariant();
          });
     </script>
 @endpush
