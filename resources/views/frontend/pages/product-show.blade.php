@@ -119,7 +119,15 @@
                                                 {{ $loop->last ? '' : ', ' }}
                                             @endforeach
                                         </li>
-                                        <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span>
+                                        <li>Stock:<span class="in-stock text-brand ml-5"><span class="stock-qty">
+                                                    @if ($product->manage_stock == 1)
+                                                        {{ $product->qty }}
+                                                    @else
+                                                        Unlimited
+                                                    @endif
+                                                </span>
+                                                Items In Stock
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -716,7 +724,7 @@
             duration: 3000
         });
 
-         $(function() {
+        $(function() {
             const variantsData = JSON.parse($('#variants-data').val());
             let selectedValues = new Set();
 
@@ -804,7 +812,7 @@
             }
 
             selectDefaultVariant();
-            
-         });
+
+        });
     </script>
 @endpush
