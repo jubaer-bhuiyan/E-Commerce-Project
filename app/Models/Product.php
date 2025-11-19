@@ -76,7 +76,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductFile::class);
     }
- 
+
     function getEffectivePriceAndStock(): array
     {
         $getPriceData = function ($id = null, $price, $special_price, $in_stock, $qty) {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\KycController;
+use App\Http\Controllers\Frontend\ProductPageController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StoreController;
@@ -13,6 +14,25 @@ Route::get('/', function () {
     return view('frontend.home.index');
 });
 
+
+/** Products routes */
+Route::get('/products', [ProductPageController::class, 'index'])->name('products.index');
+Route::get('/products/{slug}', [ProductPageController::class, 'show'])->name('products.show');
+
+
+/** Contact Routes */
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+/** Custom Page Route */
+Route::get('/page/{slug}', [HomeController::class, 'customPage'])->name('custom-page.index');
+
+/** Vendor Routes */
+Route::get('vendors', [VendorPageController::class, 'index'])->name('vendors.index');
+Route::get('vendors/{vendor}', [VendorPageController::class, 'show'])->name('vendors.show');
+
+/** Flash Sale Route */
+Route::get('/flash-sales', [HomeController::class, 'flashSales'])->name('flash-sales.index');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
