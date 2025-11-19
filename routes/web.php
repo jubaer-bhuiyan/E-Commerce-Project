@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\KycController;
 use App\Http\Controllers\Frontend\ProductPageController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -18,6 +19,19 @@ Route::get('/', function () {
 /** Products routes */
 Route::get('/products', [ProductPageController::class, 'index'])->name('products.index');
 Route::get('/products/{slug}', [ProductPageController::class, 'show'])->name('products.show');
+
+/** Cart Routes */
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::put('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::post('/cart/coupon', [CartController::class, 'applyCoupon'])->name('cart.coupon');
+    Route::delete('/cart/coupon/remove', [CartController::class, 'destroyCoupon'])->name('cart.coupon.destroy');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/shipping-method/{id}', [CheckoutController::class, 'shippingMethod'])->name('checkout.shipping');
+    Route::post('/billing-info', [CheckoutController::class, 'billingInfo'])->name('checkout.billinginfo.store');
 
 
 /** Contact Routes */
