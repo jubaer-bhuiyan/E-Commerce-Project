@@ -42,7 +42,7 @@
             object-fit: cover;
             border-radius: 4px;
         }
-
+ 
         .image-preview-item .remove-image {
             position: absolute;
             top: -10px;
