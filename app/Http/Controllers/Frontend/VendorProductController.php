@@ -45,7 +45,7 @@ class VendorProductController extends Controller
         $categories = Category::getNested();
         return view('vendor-dashboard.product.create', compact('stores', 'brands', 'tags', 'categories'));
     }
-
+ 
     function store(ProductStoreRequest $request, string $type)
     {
 
