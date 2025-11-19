@@ -82,3 +82,55 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <script>
+        $(function() {
+            $(document).on('click', '.add_to_cart', function(e) {
+                e.preventDefault();
+                var self = $(this);
+                const productId = $(this).data('id');
+                const quantity = $('.qty-val').val();
+                const variantId = $(this).attr('data-variant');
+                const modal = $(this).data('modal');
+
+
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    method: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        product_id: productId,
+                        quantity: quantity ?? 1,
+                        variant_id: variantId,
+                        modal: modal
+                    },
+                    beforeSend: function() {
+                        self.html(
+                            '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+                        );
+                    },
+                    success: function(response) {
+                        if (response.show_modal) {
+                            $('#quickViewModal').html(response.modal);
+                            initVariantJs();
+
+                            $('#quickViewModal').modal('show');
+                        }
+
+                        if (response.status == 'success' && !response.show_modal) {
+                            $('.cart-count').html(response.cart_count);
+                            notyf.success(response.message);
+                        }
+                    },
+                    error: (errors) => handleErrors(errors.responseJSON),
+                    complete: function() {
+                        self.html('<i class="fi-rs-shopping-cart mr-5"></i>Add to cart');
+                    }
+                })
+            });
+        });
+    </script>
+@endpush
