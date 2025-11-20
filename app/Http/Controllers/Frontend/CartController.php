@@ -163,7 +163,7 @@ class CartController extends Controller
         return $cartTotal;
     }
 
-
+ 
     function destroy(string $id) : JsonResponse
     {
         $cartItem = Cart::findOrFail($id);
