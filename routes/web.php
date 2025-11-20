@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('/shipping-method/{id}', [CheckoutController::class, 'shippingMethod'])->name('checkout.shipping');
     Route::post('/billing-info', [CheckoutController::class, 'billingInfo'])->name('checkout.billinginfo.store');
-
+ 
 });
 
 // Vendor routes
