@@ -20,20 +20,6 @@ Route::get('/', function () {
 Route::get('/products', [ProductPageController::class, 'index'])->name('products.index');
 Route::get('/products/{slug}', [ProductPageController::class, 'show'])->name('products.show');
 
-/** Cart Routes */
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::put('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
-
-    Route::post('/cart/coupon', [CartController::class, 'applyCoupon'])->name('cart.coupon');
-    Route::delete('/cart/coupon/remove', [CartController::class, 'destroyCoupon'])->name('cart.coupon.destroy');
-
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-    Route::get('/shipping-method/{id}', [CheckoutController::class, 'shippingMethod'])->name('checkout.shipping');
-    Route::post('/billing-info', [CheckoutController::class, 'billingInfo'])->name('checkout.billinginfo.store');
-
-
 /** Contact Routes */
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
@@ -59,6 +45,20 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // KYC routes
     Route::get('/kyc-verification', [KycController::class, 'Index'])->name('kyc.index');
     Route::post('/kyc-verification', [KycController::class, 'store'])->name('kyc.store');
+
+    /** Cart Routes */
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::put('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::post('/cart/coupon', [CartController::class, 'applyCoupon'])->name('cart.coupon');
+    Route::delete('/cart/coupon/remove', [CartController::class, 'destroyCoupon'])->name('cart.coupon.destroy');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/shipping-method/{id}', [CheckoutController::class, 'shippingMethod'])->name('checkout.shipping');
+    Route::post('/billing-info', [CheckoutController::class, 'billingInfo'])->name('checkout.billinginfo.store');
+
 });
 
 // Vendor routes

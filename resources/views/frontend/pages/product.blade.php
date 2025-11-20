@@ -83,6 +83,10 @@
     </div>
 @endsection
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+@endpush
+
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
@@ -105,7 +109,7 @@
                 }
             }
 
-            
+
             $(document).on('click', '.add_to_cart', function(e) {
                 e.preventDefault();
                 var self = $(this);
