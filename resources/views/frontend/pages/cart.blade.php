@@ -5,7 +5,7 @@
         $cartSubTotal = 0;
     @endphp
 
-    <x-frontend.breadcrumb :items="[['label' => 'Home', 'url' => '/'], ['label' => 'Cart']]" />
+    <x-frontend.breadcrumb :items="[['label' => 'Home', 'url' => '/'], ['label' => 'Cart']]" /> 
     <div class="container mb-60 mt-55">
         <div class="row">
             <div class="col-lg-8 mb-40">
