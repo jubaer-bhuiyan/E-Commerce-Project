@@ -107,6 +107,10 @@
                                     ) }}">
 
 
+                                @if ($product->primaryVariant)
+                                    <input type="hidden" name="variant_id" id="selected-variant" value="">
+                                @endif
+
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
@@ -114,12 +118,12 @@
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-                                        <button type="submit" class="button button-add-to-cart"><i
+                                        <button type="submit" data-variant="" data-id="{{ $product->id }}"
+                                            data-modal="false" class="button button-add-to-cart add_to_cart"><i
                                                 class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                        <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i
-                                                class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn hover-up wishlist-btn" data-id="{{ $product->id }}"
+                                            href="" ><i class="fi-rs-heart"></i></a>
+
                                     </div>
                                 </div>
                                 <div class="font-xs">
@@ -414,6 +418,10 @@
         </div>
     </div>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+@endpush
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

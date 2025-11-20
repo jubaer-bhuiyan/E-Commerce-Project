@@ -62,11 +62,13 @@
                         <span class="text-danger">Out of stock</span>
                     @endif
                 </div>
+                @if ($price['in_stock'])
                 <div class="add-cart">
                     <a class="add add_to_cart" data-id="{{ $product->id }}"
                         data-modal="{{ $product->primaryVariant ? 'true' : 'false' }}" href=""><i
                             class="fi-rs-shopping-cart mr-5"></i>Add to cart</a>
                 </div>
+                @endif
             </div>
         </div>
     </div>
