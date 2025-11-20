@@ -33,7 +33,7 @@ class ProductUpdateRequest extends FormRequest
             'is_new' => ['nullable'],
             'is_hot' => ['nullable'],
             'tags' => ['nullable', 'array'],
-            'tags.*' => ['nullable', 'exists:tags,id'],
+            'tags.*' => ['nullable', 'exists:tags,id'], 
         ];
     }
 }
