@@ -109,7 +109,7 @@
                 }
             }
 
-
+ 
             $(document).on('click', '.add_to_cart', function(e) {
                 e.preventDefault();
                 var self = $(this);
@@ -118,7 +118,7 @@
                 const variantId = $(this).attr('data-variant');
                 const modal = $(this).data('modal');
 
- 
+
                 $.ajax({
                     url: "{{ route('cart.add') }}",
                     method: "POST",
