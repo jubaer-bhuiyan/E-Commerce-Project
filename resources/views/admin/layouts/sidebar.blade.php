@@ -269,6 +269,15 @@
                                         </a>
                                     </div>
                                 @endif
+
+                                @if (hasPermission(['Brand Management']))
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('admin.coupons.index') }}">
+                                            Coupons
+                                        </a>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </li>
