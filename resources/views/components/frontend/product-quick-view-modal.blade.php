@@ -109,7 +109,7 @@
                              <div class="product-extra-link2">
                                  <button type="submit" class="button button-add-to-cart add_to_cart" data-variant="" data-id="{{ $product->id }}" data-modal="false" ><i
                                          class="fi-rs-shopping-cart" ></i>Add to cart</button>
-
+ 
                              </div>
                          </div>
                          <div class="font-xs">
