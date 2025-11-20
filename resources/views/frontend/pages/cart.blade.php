@@ -49,7 +49,7 @@
                                             </div>
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
-                                    </td> 
+                                    </td>
                                     @php
                                         $price = $cartItem->product->getVariantOrProductPriceAndStock(
                                             $cartItem->variant_id,
