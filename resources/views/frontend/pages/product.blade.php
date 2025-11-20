@@ -118,7 +118,7 @@
                 const variantId = $(this).attr('data-variant');
                 const modal = $(this).data('modal');
 
-
+ 
                 $.ajax({
                     url: "{{ route('cart.add') }}",
                     method: "POST",
