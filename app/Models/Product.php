@@ -126,7 +126,7 @@ class Product extends Model
 
         return $getPriceData(null, $this->price, $this->special_price, $inStock, $qty);
     }
-
+ 
 
     function getVariantOrProductPriceAndStock(?int $variantId = null): array
     {
