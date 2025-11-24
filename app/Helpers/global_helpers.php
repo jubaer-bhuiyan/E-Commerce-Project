@@ -74,7 +74,7 @@ if (!function_exists('cartDiscount')) {
         return 0;
     }
 }
-
+ 
 /** get cart discount */
 if (!function_exists('getPayableAmount')) {
     function getPayableAmount(): float
@@ -108,7 +108,7 @@ if (!function_exists('truncate')) {
         return strlen($text) > $length ? substr($text, 0, $length) . '...' : $text;
     }
 }
- 
+
 /** get nested categories */
 if (!function_exists('getNestedCategories')) {
     function getNestedCategories()
