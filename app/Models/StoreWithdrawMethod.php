@@ -12,3 +12,4 @@ class StoreWithdrawMethod extends Model
         return $this->belongsTo(WithdrawMethod::class);
     }
 }
+
