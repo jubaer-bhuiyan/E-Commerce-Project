@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\KycRequestController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ShippingRuleController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\SettingController;
@@ -137,6 +138,9 @@ Route::middleware('auth:admin')
 
         /** Coupons Routes */
         Route::resource('/coupons', CouponController::class);
+
+        /**Shipping Routes */
+        Route::resource('/shipping-rules', ShippingRuleController::class);
 
 
         // Settings Routes

@@ -278,6 +278,14 @@
                                     </div>
                                 @endif
 
+                                @if (hasPermission(['Brand Management']))
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('admin.shipping-rules.index') }}">
+                                            Shipping Rules
+                                        </a>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </li>
