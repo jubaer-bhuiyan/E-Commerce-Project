@@ -12,3 +12,5 @@ class StoreWithdrawalRequest extends Model
         return $this->belongsTo(Store::class, 'store_id');
     }
 }
+
+// Completed code

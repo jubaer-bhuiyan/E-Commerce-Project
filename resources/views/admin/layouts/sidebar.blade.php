@@ -382,6 +382,12 @@
                                     </a>
                                 </div>
                             @endif
+
+                            <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="{{ route('admin.withdraw-requests.index') }}">
+                                        Withdraw Requests
+                                    </a>
+                                </div>
                         </div>
                     </div>
                 </li>
