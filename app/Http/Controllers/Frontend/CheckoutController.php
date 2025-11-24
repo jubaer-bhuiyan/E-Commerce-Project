@@ -61,7 +61,7 @@ class CheckoutController extends Controller
             'shipping_address_id' => $request->shipping_address_id,
             'shipping_method_id' => $request->shipping_method_id
         ]);
-
+ 
         return response()->json(['status' => 'success', 'redirect_url' => route('payment.index')]);
     }
 }
