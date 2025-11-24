@@ -176,6 +176,7 @@
     </div>
 @endsection
 
+
 @push('scripts')
     <script>
         $(function() {
@@ -239,3 +240,5 @@
         });
     </script>
 @endpush
+
+// No Change
