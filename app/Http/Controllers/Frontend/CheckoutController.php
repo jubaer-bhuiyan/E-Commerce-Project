@@ -65,4 +65,3 @@ class CheckoutController extends Controller
         return response()->json(['status' => 'success', 'redirect_url' => route('payment.index')]);
     }
 }
- 
