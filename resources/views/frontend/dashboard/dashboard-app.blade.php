@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 d-print-none">
                             <div class="dashboard-menu">
                                 <ul class="nav flex-column" role="tablist">
                                     <li class="nav-item">
