@@ -257,6 +257,24 @@
                         </div>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-shield"></i>
+                        </span>
+                        <span class="nav-link-title"> Orders </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="{{ route('vendor.orders.index') }}">
+                                    All Orders
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('vendor.store-profile.index') }}">
                         <span
@@ -495,8 +513,9 @@
                     <a href="#" class="dropdown-item">Feedback</a>
                     <div class="dropdown-divider"></div>
                     <a href="./settings.html" class="dropdown-item">Settings</a>
-                    <a  onclick="event.preventDefault();
-                        $('.logout-form').submit();" href="" class="dropdown-item">Logout</a>
+                    <a onclick="event.preventDefault();
+                        $('.logout-form').submit();"
+                        href="" class="dropdown-item">Logout</a>
                     <form method="POST" action="{{ route('logout') }}" class="logout-form">
                         @csrf
                     </form>
