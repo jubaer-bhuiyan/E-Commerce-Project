@@ -318,6 +318,14 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="{{ route('vendor.withdraw-requests.index') }}">
+                                    Withdraw Requests
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </li>
                 <li class="nav-item">
