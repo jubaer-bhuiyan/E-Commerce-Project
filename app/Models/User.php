@@ -70,3 +70,5 @@ class User extends Authenticatable
         return $this->hasManyThrough(Product::class, Store::class, 'seller_id', 'store_id', 'id', 'id');
     }
 }
+
+// Completed code
