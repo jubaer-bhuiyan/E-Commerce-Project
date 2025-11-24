@@ -43,6 +43,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::put('/profile', [ProfileController::class, 'profileUpdate'])->name('profile.update');
     Route::put('/profile/password', [ProfileController::class, 'passwordUpdate'])->name('password.update');
 
+    Route::resource('/address', AddressController::class);
+
+    Route::get('/orders', [UserOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [UserOrderController::class, 'show'])->name('orders.show');
+
     // KYC routes
     Route::get('/kyc-verification', [KycController::class, 'Index'])->name('kyc.index');
     Route::post('/kyc-verification', [KycController::class, 'store'])->name('kyc.store');
