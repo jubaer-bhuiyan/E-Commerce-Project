@@ -98,3 +98,5 @@ class StoreWithdrawMethodController extends Controller
         return response()->json(['status' => 'success', 'message' => 'Deleted Successfully']);
     }
 }
+
+// Completed code above
