@@ -26,7 +26,7 @@ class Order extends Model
 
     function orderProducts() : HasMany
     {
-        return $this->hasMany(OrderProduct::class);
+        return $this->hasMany(OrderProduct::class); 
     }
 
     function orderHistory() : HasMany
