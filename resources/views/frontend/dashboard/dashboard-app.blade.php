@@ -15,7 +15,7 @@
                                                 class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i
+                                        <a class="nav-link" href="{{ route('orders.index') }}"><i
                                                 class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">

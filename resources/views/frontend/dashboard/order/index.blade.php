@@ -1,4 +1,8 @@
-<div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+@extends('frontend.dashboard.dashboard-app')
+
+@section('dashboard_contents')
+
+<div class="tab-pane fade active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
     <div class="card">
         <div class="card-header p-0">
             <h3 class="mb-0">Your Orders</h3>
@@ -9,44 +13,42 @@
                     <thead>
                         <tr>
                             <th>Order</th>
+                            <th>Store</th>
                             <th>Date</th>
-                            <th>Status</th>
+                            <th>Payment Status</th>
+                            <th>Order Status</th>
                             <th>Total</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($orders as $order)
                         <tr>
-                            <td>#1357</td>
-                            <td>March 45, 2020</td>
-                            <td><span class="text-warning">Pending</span></td>
-                            <td>$125.00 for 2 item</td>
-                            <td><a href="dashboard_order_details.html" class="btn-small d-block">View</a></td>
+                            <td>#{{ $order->id }}</td>
+                            <td>{{ $order->store->name }}</td>
+                            <td>{{ date('Y-m-d', strtotime($order->created_at)) }}</td>
+                            <td>
+                                @if($order->payment_status == 'paid')
+                                    <span class="badge bg-success">Paid</span>
+                                @elseif($order->payment_status == 'pending')
+                                    <span class="badge bg-warning">Pending</span>
+                                @else
+                                    <span class="badge bg-danger">Failed</span>
+                                @endif
+                            </td>
+                            <td>
+                                {{ $order->order_status }}
+                            </td>
+                            <td> {{ $order->currency }} {{ $order->total }}</td>
+                            <td><a href="{{ route('orders.show', $order) }}" class="btn-small d-block">View</a></td>
                         </tr>
-                        <tr>
-                            <td>#2468</td>
-                            <td>June 29, 2020</td>
-                            <td><span class="text-danger">Cancel</span></td>
-                            <td>$364.00 for 5 item</td>
-                            <td><a href="dashboard_order_details.html" class="btn-small d-block">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>#2366</td>
-                            <td>August 02, 2020</td>
-                            <td><span class="text-primary">Completed</span></td>
-                            <td>$280.00 for 3 item</td>
-                            <td><a href="dashboard_order_details.html" class="btn-small d-block">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>#1357</td>
-                            <td>March 45, 2020</td>
-                            <td><span class="text-warning">Processing</span></td>
-                            <td>$125.00 for 2 item</td>
-                            <td><a href="dashboard_order_details.html" class="btn-small d-block">View</a></td>
-                        </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+@endsection
