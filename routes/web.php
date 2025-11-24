@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AddressController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\KycController;
