@@ -289,7 +289,28 @@
                             </div>
                         </div>
                     </li>
-                    @endif
+                @endif
+
+                @if (hasPermission(['Category Management', 'Tags Management', 'Brand Management']))
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-shield"></i>
+                            </span>
+                            <span class="nav-link-title"> Orders </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('admin.orders.index') }}">
+                                            All Orders
+                                        </a>
+                                    </div>
+                            </div>
+                        </div>
+                    </li>
+                @endif
 
                     @if (hasPermission(['KYC Management']))
                         <li class="nav-item dropdown">
