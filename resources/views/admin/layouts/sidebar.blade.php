@@ -237,7 +237,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
 
-                                 @if (hasPermission(['Category Management']))
+                                @if (hasPermission(['Category Management']))
                                     <div class="dropdown-menu-column">
                                         <a class="dropdown-item" href="{{ route('admin.products.index') }}">
                                             Products
@@ -302,92 +302,144 @@
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
-                                    <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route('admin.orders.index') }}">
-                                            All Orders
-                                        </a>
-                                    </div>
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="{{ route('admin.orders.index') }}">
+                                        All Orders
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'pending']) }}">
+                                        Pending Orders
+                                    </a>
+                                </div>
+
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'processed']) }}">
+                                        Processed Orders
+                                    </a>
+                                </div>
+
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'packed']) }}">
+                                        Packed Orders
+                                    </a>
+                                </div>
+
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'shipped']) }}">
+                                        Shipped Orders
+                                    </a>
+                                </div>
+
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'in_transit']) }}">
+                                        In Transit
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'out_for_delivery']) }}">
+                                        Out For Delivery
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'delivered']) }}">
+                                        Delivered
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.orders.index', ['status' => 'canceled']) }}">
+                                        Canceled
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </li>
                 @endif
 
-                    @if (hasPermission(['KYC Management']))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                                data-bs-auto-close="false" role="button" aria-expanded="false">
-                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                    <i class="ti ti-user-check"></i>
-                                </span>
-                                <span class="nav-link-title"> KYC Requests </span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <div class="dropdown-menu-columns">
+                @if (hasPermission(['KYC Management']))
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-user-check"></i>
+                            </span>
+                            <span class="nav-link-title"> KYC Requests </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
+                                        All Requests
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.kyc.pending') }}">
+                                        Pending Requests
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.kyc.rejected') }}">
+                                        Rejected Requests
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @endif
+                @if (hasPermission(['Role Management', 'Role User Management']))
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-shield"></i>
+                            </span>
+                            <span class="nav-link-title"> Access Management </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                @if (hasPermission(['Role Management']))
                                     <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
-                                            All Requests
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('admin.kyc.pending') }}">
-                                            Pending Requests
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('admin.kyc.rejected') }}">
-                                            Rejected Requests
+                                        <a class="dropdown-item" href="{{ route('admin.role.index') }}">
+                                            Role
                                         </a>
                                     </div>
-                                </div>
+                                @endif
                             </div>
-                        </li>
-                    @endif
-                    @if (hasPermission(['Role Management', 'Role User Management']))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                                data-bs-auto-close="false" role="button" aria-expanded="false">
-                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                    <i class="ti ti-shield"></i>
-                                </span>
-                                <span class="nav-link-title"> Access Management </span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <div class="dropdown-menu-columns">
-                                    @if (hasPermission(['Role Management']))
-                                        <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="{{ route('admin.role.index') }}">
-                                                Role
-                                            </a>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="dropdown-menu-columns">
-                                    @if (hasPermission(['Role User Management']))
-                                        <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
-                                                Role User
-                                            </a>
-                                        </div>
-                                    @endif
-                                </div>
+                            <div class="dropdown-menu-columns">
+                                @if (hasPermission(['Role User Management']))
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
+                                            Role User
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
-                        </li>
-                    @endif
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
-                            </span>
-                            <span class="nav-link-title"> Payment Settings </span>
-                        </a>
+                        </div>
                     </li>
+                @endif
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.settings.index') }}">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
-                            </span>
-                            <span class="nav-link-title"> Settings </span>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
+                        </span>
+                        <span class="nav-link-title"> Payment Settings </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.settings.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
+                        </span>
+                        <span class="nav-link-title"> Settings </span>
+                    </a>
+                </li>
 
 
-                    {{-- <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
