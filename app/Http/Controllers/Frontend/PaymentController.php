@@ -80,7 +80,7 @@ class PaymentController extends Controller
             'validate_ssl'   => true
         ];
     }
-
+ 
     function paypalPayment()
     {
         $payableAmount = getPayableAmount() * config('settings.paypal_rate');
