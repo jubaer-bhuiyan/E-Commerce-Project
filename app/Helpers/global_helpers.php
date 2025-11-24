@@ -88,7 +88,7 @@ if (!function_exists('getPayableAmount')) {
 
         return round(($cartTotal + $shippingCharge) - $cartDiscount, 2);
     }
-} 
+}
 if (!function_exists('getShippingCharge')) {
     function getShippingCharge(): float
     {
@@ -146,3 +146,5 @@ if(!function_exists('setActive')) {
         return request()->routeIs($routes) ? $activeClass : '';
     }
 }
+
+// No Change
