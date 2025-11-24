@@ -272,6 +272,33 @@
                                     All Orders
                                 </a>
                             </div>
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item"
+                                    href="{{ route('vendor.orders.index', ['status' => 'pending']) }}">
+                                    Pending Orders
+                                </a>
+                            </div>
+
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item"
+                                    href="{{ route('vendor.orders.index', ['status' => 'processed']) }}">
+                                    Processed Orders
+                                </a>
+                            </div>
+
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item"
+                                    href="{{ route('vendor.orders.index', ['status' => 'packed']) }}">
+                                    Packed Orders
+                                </a>
+                            </div>
+
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item"
+                                    href="{{ route('vendor.orders.index', ['status' => 'shipped']) }}">
+                                    Shipped Orders
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>
