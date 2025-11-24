@@ -84,4 +84,4 @@ class StoreWithdrawRequestController extends Controller
     }
 }
 
-// Completed code 
+// Completed code
