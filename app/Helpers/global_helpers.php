@@ -74,7 +74,7 @@ if (!function_exists('cartDiscount')) {
         return 0;
     }
 }
- 
+
 /** get cart discount */
 if (!function_exists('getPayableAmount')) {
     function getPayableAmount(): float
@@ -88,7 +88,7 @@ if (!function_exists('getPayableAmount')) {
 
         return round(($cartTotal + $shippingCharge) - $cartDiscount, 2);
     }
-}
+} 
 if (!function_exists('getShippingCharge')) {
     function getShippingCharge(): float
     {
