@@ -114,3 +114,4 @@ class PaymentSettingController extends Controller implements HasMiddleware
         return redirect()->back();
     }
 }
+ 
