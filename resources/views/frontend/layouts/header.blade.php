@@ -80,10 +80,12 @@
                             </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="#">
-                                    <img alt="ShopX" src="{{ asset('assets/frontend/dist/imgs/theme/icons/icon-cart.svg') }}" />
-                                    <span class="pro-count blue">2</span>
+                                    <img alt="ShopX"
+                                        src="{{ asset('assets/frontend/dist/imgs/theme/icons/icon-cart.svg') }}" />
+                                    <span class="pro-count blue cart-count">{{ cartCount() }}</span>
                                 </a>
                                 <a href="{{ route('cart.index') }}"><span class="lable">Cart</span></a>
+
                             </div>
                             <div class="header-action-icon-2">
                                 <a href="{{ route('login') }}">
