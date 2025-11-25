@@ -8,3 +8,5 @@ class Slider extends Model
 {
     protected $guarded = [];
 }
+
+// No Change
