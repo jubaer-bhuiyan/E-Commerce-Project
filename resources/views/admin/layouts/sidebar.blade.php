@@ -252,6 +252,13 @@
                                           </a>
                                       </div>
 
+                                <div class="dropdown-menu-column">
+                                          <a class="dropdown-item {{ setActive(['admin.hero-banners.*']) }}"
+                                              href="{{ route('admin.hero-banners.index') }}">
+                                              Hero Banners
+                                          </a>
+                                      </div>
+
 
                                 @if (hasPermission(['Category Management']))
                                     <div class="dropdown-menu-column">
