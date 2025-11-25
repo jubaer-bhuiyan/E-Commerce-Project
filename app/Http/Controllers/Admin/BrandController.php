@@ -21,7 +21,7 @@ class BrandController extends Controller implements HasMiddleware
             new Middleware('permission:Brand Management')
         ];
     }
-
+ 
     /**
      * Display a listing of the resource.
      */
