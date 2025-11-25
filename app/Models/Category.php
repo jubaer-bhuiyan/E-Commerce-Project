@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
@@ -12,7 +13,12 @@ class Category extends Model
         'parent_id',
         'position',
         'is_active',
+        'image',
+        'icon',
+        'is_featured'
     ];
+
+
 
     public function parent()
     {
@@ -23,6 +29,22 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
+
+
+    function allChildrenIds() : array
+    {
+        $ids = [];
+
+        foreach($this->children as $child) {
+            $ids[] = $child->id;
+
+            $ids = array_merge($ids, $child->allChildrenIds());
+        }
+
+        return $ids;
+    }
+
+
 
     static function getNested($parentId = null, $depth = 0, $maxDepth = 3)
     {
@@ -36,4 +58,11 @@ class Category extends Model
         return $categories;
 
     }
+
+    function products() : BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }
+
+// Complete Code
