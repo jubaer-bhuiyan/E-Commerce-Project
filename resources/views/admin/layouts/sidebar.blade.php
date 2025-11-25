@@ -245,6 +245,13 @@
                                     </div>
                                 @endif
 
+                                <div class="dropdown-menu-column">
+                                          <a class="dropdown-item"
+                                              href="{{ route('admin.sliders.index') }}">
+                                              Sliders
+                                          </a>
+                                      </div>
+
 
                                 @if (hasPermission(['Category Management']))
                                     <div class="dropdown-menu-column">
