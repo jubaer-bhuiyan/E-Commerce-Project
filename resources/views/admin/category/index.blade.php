@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-
 @push('styles')
     <style>
         .dd-item.custom-cat-item {
@@ -66,7 +65,6 @@
         }
     </style>
 @endpush
-
 @section('contents')
     <div class="container-fluid mt-4">
         <div class="row">
@@ -90,8 +88,28 @@
                 <div class="card">
                     <div class="card-header"><span id="category-title">Create Category</span></div>
                     <div class="card-body">
-                        <form id="category-form" action="">
+                        <form action="" id="category-form">
                             <input type="hidden" id="category-id">
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="mb-2">
+                                        <label for="" class="form-label">Icon <span
+                                                class="text-danger"></span></label>
+                                        <x-input-image imageUploadId="image-upload" imagePreviewId="image-preview"
+                                            imageLabelId="image-label" name="icon" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="mb-2">
+                                        <label for="" class="form-label">Image <span
+                                                class="text-danger"></span></label>
+                                        <x-input-image imageUploadId="image-upload-two" imagePreviewId="image-preview-two"
+                                            imageLabelId="image-label-two" name="image" />
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-2">
                                 <label for="" class="form-label">Name <span class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control" required id="name">
@@ -107,14 +125,27 @@
                                 </select>
                             </div>
 
-                            <div class="mb-2">
-                                <label class="form-check form-switch form-switch-3">
-                                    <input class="form-check-input" type="checkbox" checked="" name="is_active"
-                                        id="is_active">
-                                    <span class="form-check-label">Active</span>
-                                </label>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-2">
+                                        <label class="form-check form-switch form-switch-3">
+                                            <input class="form-check-input" type="checkbox" name="is_featured"
+                                                id="is_featured">
+                                            <span class="form-check-label">is featured</span>
+                                        </label>
+                                    </div>
 
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-2">
+                                        <label class="form-check form-switch form-switch-3">
+                                            <input class="form-check-input" type="checkbox" checked="" name="is_active"
+                                                id="is_active">
+                                            <span class="form-check-label">Active</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary" id="btn-save">Save</button>
                                 <button type="button" class="btn btn-danger d-none" id="btn-delete">Delete</button>
@@ -131,6 +162,27 @@
 
 @push('scripts')
     <script>
+        $(document).ready(function() {
+            $.uploadPreview({
+                input_field: "#image-upload", // Default: .image-upload
+                preview_box: "#image-preview", // Default: .image-preview
+                label_field: "#image-label", // Default: .image-label
+                label_default: "Choose File", // Default: Choose File
+                label_selected: "Change File", // Default: Change File
+                no_label: false // Default: false
+            });
+
+            $.uploadPreview({
+                input_field: "#image-upload-two", // Default: .image-upload
+                preview_box: "#image-preview-two", // Default: .image-preview
+                label_field: "#image-label-two", // Default: .image-label
+                label_default: "Choose File", // Default: Choose File
+                label_selected: "Change File", // Default: Change File
+                no_label: false // Default: false
+            });
+        });
+
+
         $(function() {
 
             function loadTree() {
@@ -197,30 +249,46 @@
                 })
             }
 
-            $("#category-form").submit(function(e) {
-                e.preventDefault();
 
+            $('#category-form').submit(function(e) {
+                e.preventDefault();
                 let id = $('#category-id').val();
                 let method = id ? 'PUT' : 'POST';
                 let url = id ? "{{ route('admin.categories.update', ':id') }}".replace(':id', id) :
                     "{{ route('admin.categories.store') }}";
 
-                let data = {
-                    name: $("#name").val(),
-                    slug: $("#slug").val(),
-                    parent_id: $("#parent_id").val(),
-                    is_active: $("#is_active").is(":checked") ? 1 : 0,
-                    _token: "{{ csrf_token() }}"
-                };
+                let formData = new FormData();
+                formData.append('name', $('#name').val());
+                formData.append('slug', $('#slug').val());
+                formData.append('parent_id', $('#parent_id').val());
+                formData.append('is_active', $('#is_active').is(':checked') ? 1 : 0);
+                formData.append('_token', '{{ csrf_token() }}');
+                formData.append('is_featured', $('#is_featured').is(':checked') ? 1 : 0);
+
+                let iconFile = $('#image-upload')[0].files[0];
+                if (iconFile) {
+                    formData.append('icon', iconFile);
+                }
+
+                let imageFile = $('#image-upload-two')[0].files[0];
+                if (imageFile) {
+                    formData.append('image', imageFile);
+                }
+
+                if(id) {
+                    formData.append('_method', 'PUT');
+                }
 
                 $.ajax({
                     url: url,
-                    method: method,
-                    data: data,
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
                     success: function(response) {
                         console.log(response);
                         loadTree();
-                        if (response.type != 'update') clearForm();
+                        if(response.type != 'update') clearForm();
 
                         notyf.success(response.message);
 
@@ -232,8 +300,10 @@
                             notyf.error(errors[key][0]);
                         })
                     }
-                });
+                })
             });
+
+
 
             // load parent dropdown
             function loadParentDropdown(selectedId, excludeId) {
@@ -257,6 +327,7 @@
 
                 })
             }
+
 
             // delete category
 
@@ -314,6 +385,7 @@
                 }
             })
 
+
             function slugify(text) {
                 return text.toString().toLowerCase().replace(/\s+/g, '-')
                     .replace(/[^a-z0-9\-]/g, '')
@@ -321,7 +393,10 @@
                     .replace(/^\-+|\-+$/g, '');
             }
 
+
+
             function fillForm(cat) {
+                let domain = "{{ url('/') }}";
                 $('#category-title').text('Edit Category');
                 $('#name').val(cat.name);
                 $('#slug').val(cat.slug);
@@ -329,6 +404,24 @@
                 loadParentDropdown(cat.parent_id, cat.id);
                 $('#category-id').val(cat.id);
                 $('#btn-delete').removeClass('d-none');
+                $('#is_featured').prop('checked', cat.is_featured);
+                $('#image-preview').css('background-image', cat.icon ? `url(${domain}/${cat.icon})` : '');
+                $('#image-preview-two').css('background-image', cat.image ? `url(${domain}/${cat.image})` : '');
+            }
+
+            // clear form
+            function clearForm() {
+                $('#category-form')[0].reset();
+                $('#category-title').text('Create Category');
+                $('#name').val('');
+                $('#slug').val('');
+                $('#parent_id').val('');
+                $('#is_active').prop('checked', true);
+                loadParentDropdown(null, null);
+                $('#category-id').val('');
+                $('#btn-delete').addClass('d-none');
+                $('#is_featured').prop('checked', false);
+                $('.image-preview').css('background-image', 'none');
             }
 
             $('#btn-new').on('click', function() {
@@ -339,20 +432,11 @@
                 clearForm();
             })
 
-            // clear form
-            function clearForm() {
-                $("#name").val('');
-                $("#slug").val('');
-                $("#parent_id").val('');
-                $("#is_active").prop('checked', true);
-                loadParentDropdown(null, null);
-                $('#category-id').val('');
-                $('#btn-delete').addClass('d-none');
-            }
-
             // Initial Load
             clearForm();
             loadTree();
-        });
+        })
     </script>
 @endpush
+
+// No Change

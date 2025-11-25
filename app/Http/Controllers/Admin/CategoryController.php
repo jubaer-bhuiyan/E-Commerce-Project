@@ -23,6 +23,7 @@ class CategoryController extends Controller implements HasMiddleware
             new Middleware('permission:Category Management')
         ];
     }
+
     function index(): View
     {
         return view('admin.category.index');
@@ -35,6 +36,9 @@ class CategoryController extends Controller implements HasMiddleware
             'slug' => ['required', 'string', 'max:255', 'unique:categories,slug'],
             'parent_id' => ['nullable', 'exists:categories,id'],
             'is_active' => ['boolean'],
+            'is_featured' => ['boolean'],
+            'image' => ['nullable', 'mimes:jpeg,png,jpg,gif,webp,svg', 'max: 2048'],
+            'icon' => ['nullable', 'mimes:jpeg,png,jpg,gif,webp,svg', 'max: 1000'],
         ]);
 
         // prevent circular reference and max depth
@@ -57,6 +61,14 @@ class CategoryController extends Controller implements HasMiddleware
 
         $data['position'] = Category::where('parent_id', $data['parent_id'] ?? null)->max('position') + 1;
 
+        // handle images
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadFile($request->file('image'));
+        }
+        if ($request->hasFile('icon')) {
+            $data['icon'] = $this->uploadFile($request->file('icon'));
+        }
+
         $category = Category::create($data);
 
         return response()->json(['success' => true, 'message' => 'Category created successfully', 'category' => $category]);
@@ -70,6 +82,9 @@ class CategoryController extends Controller implements HasMiddleware
             'slug' => ['required', 'string', 'max:255', 'unique:categories,slug,' . $category->id],
             'parent_id' => ['nullable', 'exists:categories,id'],
             'is_active' => ['boolean'],
+            'is_featured' => ['boolean'],
+            'image' => ['nullable', 'mimes:jpeg,png,jpg,gif,webp,svg', 'max: 2048'],
+            'icon' => ['nullable', 'mimes:jpeg,png,jpg,gif,webp,svg', 'max: 1000'],
         ]);
 
         // prevent circular reference and max depth
@@ -91,6 +106,14 @@ class CategoryController extends Controller implements HasMiddleware
         }
 
         $data['is_active'] = $data['is_active'] ?? false;
+
+        // handle images
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadFile($request->file('image'));
+        }
+        if ($request->hasFile('icon')) {
+            $data['icon'] = $this->uploadFile($request->file('icon'));
+        }
 
         $category->update($data);
 
@@ -144,9 +167,12 @@ class CategoryController extends Controller implements HasMiddleware
         return response()->json(['success' => true, 'message' => 'Category deleted successfully']);
     }
 
+
     function getNestedCategories()
     {
         $categories = Category::getNested();
         return response()->json($categories);
     }
 }
+
+// No Change
