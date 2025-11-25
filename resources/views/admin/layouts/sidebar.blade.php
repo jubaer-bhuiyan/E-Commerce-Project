@@ -259,6 +259,13 @@
                                           </a>
                                       </div>
 
+                                      <div class="dropdown-menu-column">
+                                          <a class="dropdown-item {{ setActive(['admin.popular-categories.*']) }}"
+                                              href="{{ route('admin.popular-categories.index') }}">
+                                              Popular Category Products
+                                          </a>
+                                      </div>
+
 
                                 @if (hasPermission(['Category Management']))
                                     <div class="dropdown-menu-column">
