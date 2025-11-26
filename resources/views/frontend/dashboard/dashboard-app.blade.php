@@ -11,15 +11,17 @@
                             <div class="dashboard-menu">
                                 <ul class="nav flex-column" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href=""><i
+                                        <a class="nav-link {{ setActive(['dashboard']) }}"
+                                            href="{{ route('dashboard') }}"><i
                                                 class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('orders.index') }}"><i
+                                        <a class="nav-link {{ setActive(['orders.*']) }}"
+                                            href="{{ route('orders.index') }}"><i
                                                 class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link"
+                                        <a class="nav-link {{ setActive(['purchased.*']) }}"
                                             href="{{ route('purchased.products') }}"><i
                                                 class="fi-rs-shopping-bag mr-10"></i>Purchased Products</a>
                                     </li>
@@ -29,28 +31,31 @@
                                                 class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link"
+                                        <a class="nav-link {{ setActive(['reviews.*']) }}"
                                             href="{{ route('reviews.index') }}">
                                             <i class="fi fi-rs-star mr-10"></i> Reviews</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('address.index') }}"><i class="fi-rs-marker mr-10"></i>My Address</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('profile') }}"><i class="fi-rs-user mr-10"></i>Account
-                                            details</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=""><i class="fi-rs-heart mr-10"></i> Wishlist</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#"
-                                            onclick="event.preventDefault(); $('.form-logout').submit();">
-                                            <i class="fi-rs-sign-out mr-10"></i>Logout
+                                        <a class="nav-link {{ setActive(['wishlist.index']) }}" href="{{ route('wishlist.index') }}">
+                                            <i class="fi fi-rs-star mr-10"></i> Wishlist
                                         </a>
                                     </li>
-                                    <form class="form-logout" action="{{ route('logout') }}" method="POST"
-                                        style="display:none;">
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ setActive(['address.*']) }}"
+                                            href="{{ route('address.index') }}"><i class="fi-rs-marker mr-10"></i>My
+                                            Address</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ setActive(['profile']) }}" href="{{ route('profile') }}"><i
+                                                class="fi-rs-user mr-10"></i>Account
+                                            details</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" onclick="event.preventDefault(); $('.form-logout').submit()"
+                                            href="login.html"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                    </li>
+                                    <form class="form-logout" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
                                 </ul>
@@ -67,3 +72,4 @@
         </div>
     </div>
 @endsection
+ 
