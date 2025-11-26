@@ -24,6 +24,11 @@
                                                 class="fi-rs-shopping-bag mr-10"></i>Purchased Products</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link {{ setActive(['track.order.*']) }}"
+                                            href="{{ route('track.order.index') }}"><i
+                                                class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link"
                                             href="{{ route('reviews.index') }}">
                                             <i class="fi fi-rs-star mr-10"></i> Reviews</a>
