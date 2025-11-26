@@ -500,6 +500,13 @@
                     </a>
                 </li>
 
+                <div class="dropdown-menu-column">
+                                          <a class="dropdown-item "
+                                              href="{{ route('admin.contact-settings.index') }}">
+                                              Contact Setting
+                                          </a>
+                                      </div>
+
                 <li class="nav-item">
                               <a class="nav-link"
                                   href="{{ route('admin.subscribers.index') }}">
