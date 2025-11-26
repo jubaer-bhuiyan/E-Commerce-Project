@@ -252,6 +252,13 @@
                                           </a>
                                       </div>
 
+                                      <div class="dropdown-menu-column">
+                                          <a class="dropdown-item"
+                                              href="{{ route('admin.product-sections.index') }}">
+                                              Products Section
+                                          </a>
+                                      </div>
+
                                 <div class="dropdown-menu-column">
                                           <a class="dropdown-item"
                                               href="{{ route('admin.sliders.index') }}">
