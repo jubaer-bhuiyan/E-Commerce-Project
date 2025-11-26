@@ -21,3 +21,5 @@ class CustomPageUpdateRequest extends FormRequest
         ];
     }
 }
+
+// Complete Code
