@@ -516,6 +516,13 @@
                                           </a>
                                       </div>
 
+                                      <div class="dropdown-menu-column">
+                                          <a class="dropdown-item"
+                                              href="{{ route('admin.social-links.index') }}">
+                                              Social Links
+                                          </a>
+                                      </div>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
