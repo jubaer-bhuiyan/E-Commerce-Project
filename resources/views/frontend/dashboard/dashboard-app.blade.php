@@ -19,8 +19,9 @@
                                                 class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href=""><i
-                                                class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
+                                        <a class="nav-link"
+                                            href="{{ route('purchased.products') }}"><i
+                                                class="fi-rs-shopping-bag mr-10"></i>Purchased Products</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link"
