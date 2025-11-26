@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Dashboard</title>
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    {{-- <link href="./dist/libs/jsvectormap/dist/jsvectormap.css?1750026893" rel="stylesheet" /> --}}
-    <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" href="{{ asset('assets/global/upload-preview/upload-preview.css') }}" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
@@ -18,11 +16,13 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="{{ asset('assets/admin/dist/css/tabler.css') }}" rel="stylesheet" />
     <!-- END GLOBAL MANDATORY STYLES -->
+
     <!-- BEGIN CUSTOM FONT -->
     <style>
         @import url("https://rsms.me/inter/inter.css");
     </style>
     <!-- END CUSTOM FONT -->
+
     @stack('styles')
 </head>
 
@@ -35,7 +35,6 @@
         @include('vendor-dashboard.layouts.sidebar')
         <!--  END SIDEBAR  -->
         <div class="page-wrapper">
-
             <!-- BEGIN PAGE BODY -->
             <div class="page-body">
                 @yield('contents')
@@ -50,12 +49,11 @@
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
                                     Copyright &copy; 2025
-                                    <a href="https://jubaerbhuiyan2001.pythonanywhere.com/"
-                                        class="link-secondary">Jubaer Ahamed Bhuiyan</a>. All rights reserved.
+                                    <a href="https://www.shakilahmeed.com" class="link-secondary">Shakil Ahmed</a>. All
+                                    rights reserved.
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="javascript:void(0)" class="link-secondary" rel="noopener"> v1.0.0
-                                    </a>
+                                    <a href="javascript:void(0)" class="link-secondary" rel="noopener"> v1.0.0 </a>
                                 </li>
                             </ul>
                         </div>
@@ -80,7 +78,6 @@
     @include('admin.layouts.scripts')
     @stack('scripts')
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-
 </body>
 
 </html>
