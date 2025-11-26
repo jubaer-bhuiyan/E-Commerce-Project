@@ -23,6 +23,11 @@
                                                 class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link"
+                                            href="{{ route('reviews.index') }}">
+                                            <i class="fi fi-rs-star mr-10"></i> Reviews</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ route('address.index') }}"><i class="fi-rs-marker mr-10"></i>My Address</a>
                                     </li>
                                     <li class="nav-item">
