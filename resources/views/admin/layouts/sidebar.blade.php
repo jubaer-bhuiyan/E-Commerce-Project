@@ -501,6 +501,15 @@
                 </li>
 
                 <li class="nav-item">
+                              <a class="nav-link"
+                                  href="{{ route('admin.subscribers.index') }}">
+                                  <span class="nav-link-icon d-md-none d-lg-inline-block"><i
+                                          class="ti ti-news"></i></span>
+                                  <span class="nav-link-title"> Subscribers </span>
+                              </a>
+                          </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.settings.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
                         </span>

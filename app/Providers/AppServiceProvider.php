@@ -35,12 +35,12 @@ class AppServiceProvider extends ServiceProvider
 
 
             $wishlist = Wishlist::where('user_id', auth('web')?->user()?->id);
-            $ads = BannerAd::all()->groupBy('banner_id');
+            //$ads = BannerAd::all()->groupBy('banner_id');
             $view->with([
                 'wishlistCount' => $wishlist->count() ?? 0,
                 'wishlistsProductIds' => $wishlist->pluck('product_id')->toArray() ?? []
             ]);
-            $view->with('ads', $ads);
+            //$view->with('ads', $ads);
         });
     }
 }
