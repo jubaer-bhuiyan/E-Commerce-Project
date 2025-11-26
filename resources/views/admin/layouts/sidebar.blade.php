@@ -507,6 +507,13 @@
                                           </a>
                                       </div>
 
+                                      <div class="dropdown-menu-column">
+                                          <a class="dropdown-item {{ setActive(['admin.contact-messages.*']) }}"
+                                              href="{{ route('admin.contact-messages.index') }}">
+                                              Contact Messages
+                                          </a>
+                                      </div>
+
                 <li class="nav-item">
                               <a class="nav-link"
                                   href="{{ route('admin.subscribers.index') }}">
