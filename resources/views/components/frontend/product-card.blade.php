@@ -1,7 +1,6 @@
 @props(['class' => 'col-6 col-xxl-3 col-lg-4 col-md-4 col-sm-6'])
 
 <div {{ $attributes }} class="{{ $class }}">
-    <!--product card-->
     <div class="product-cart-wrap mb-30">
         <div class="product-img-action-wrap">
             <div class="product-img product-img-zoom">
@@ -14,10 +13,15 @@
                 </a>
             </div>
             <div class="product-action-1">
-                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
-                        class="fi-rs-heart"></i></a>
-                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+
+                <a aria-label="Add To Wishlist" class="action-btn wishlist-btn" data-id="{{ $product->id }}" href="">
+                    @if(in_array($product->id, $wishlistsProductIds))
+                    <i class="fi fi-ss-heart"></i>
+                    @else
+                    <i class="fi-rs-heart"></i>
+                    @endif
+                    </a>
+                <a href="{{ route('products.show', $product->slug) }}" aria-label="Quick view" class="action-btn" ><i
                         class="fi-rs-eye"></i></a>
             </div>
             <div class="product-badges product-badges-position product-badges-mrg">
@@ -30,15 +34,15 @@
             </div>
         </div>
         <div class="product-content-wrap">
-            {{-- <div class="product-category">
-                <a href="shop-grid-right.html">{{ $product->category->name }}</a>
-            </div> --}}
+            <div class="product-category">
+                {{-- <a href="shop-grid-right.html">{{ $product->category->name }}</a> --}}
+            </div>
             <h2><a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a></h2>
             <div class="product-rate-cover">
                 <div class="product-rate d-inline-block">
-                    <div class="product-rating" style="width: 90%"></div>
+                    <div class="product-rating" style="width: {{ ratingPercent($product->reviews_avg_rating) }}%"></div>
                 </div>
-                <span class="font-small ml-5 text-muted"> (4.0)</span>
+                <span class="font-small ml-5 text-muted"> ({{ round($product->reviews_avg_rating, 2) ?? 0 }})</span>
             </div>
             <div>
                 <span class="font-small text-muted">By <a
@@ -61,6 +65,9 @@
                     @else
                         <span class="text-danger">Out of stock</span>
                     @endif
+
+
+
                 </div>
                 @if ($price['in_stock'])
                 <div class="add-cart">
@@ -75,4 +82,4 @@
 </div>
 <!--end product card-->
 
-{{-- // Complete code --}}
+{{-- Complete Code --}}
