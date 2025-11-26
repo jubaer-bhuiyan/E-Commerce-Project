@@ -16,10 +16,7 @@ class GenericMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public $subject, public $body)
-    {
-        //
-    }
+    public function __construct(public $subject, public $body, public $fromAddress = null) {}
 
     /**
      * Get the message envelope.
@@ -28,6 +25,7 @@ class GenericMail extends Mailable
     {
         return new Envelope(
             subject: $this->subject,
+            from: $this->fromAddress
         );
     }
 
@@ -51,3 +49,5 @@ class GenericMail extends Mailable
         return [];
     }
 }
+
+// complete code
