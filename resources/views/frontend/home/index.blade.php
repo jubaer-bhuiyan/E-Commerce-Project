@@ -28,4 +28,4 @@
     <!--End 4 columns-->
 @endsection
 
-// Complete code
+ {{-- Complete code --}}

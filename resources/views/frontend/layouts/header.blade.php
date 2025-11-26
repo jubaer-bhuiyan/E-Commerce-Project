@@ -156,7 +156,8 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="{{ url('/') }}"><img src="{{ asset(config('settings.site_logo')) }}" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset(config('settings.site_logo')) }}"
+                            alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
@@ -169,34 +170,35 @@
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
                                     @foreach (getNestedCategories() as $category)
-                                        @if($loop->iteration <= 11)
-                                        <li>
-                                            <a href="{{ route('products.index', ['category' => $category->slug]) }}">
-                                                <img src="{{ asset($category->icon) }}" alt="" />
-                                                <span>{{ $category->name }}</span>
-                                            </a>
-                                            @if (count($category->children_nested) > 0)
-                                                <ul>
-                                                    @foreach ($category->children_nested as $child)
-                                                        <li
-                                                            class="{{ count($child->children_nested) > 0 ? '' : 'no_child' }}">
-                                                            <a
-                                                                href="{{ route('products.index', ['category' => $child->slug]) }}">{{ $child->name }}</a>
-                                                            @if (count($child->children_nested) > 0)
-                                                                <ul>
-                                                                    @foreach ($child->children_nested as $subchild)
-                                                                        <li class="no_child">
-                                                                            <a
-                                                                                href="{{ route('products.index', ['category' => $subchild->slug]) }}">{{ $subchild->name }}</a>
-                                                                        </li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-                                        </li>
+                                        @if ($loop->iteration <= 11)
+                                            <li>
+                                                <a
+                                                    href="{{ route('products.index', ['category' => $category->slug]) }}">
+                                                    <img src="{{ asset($category->icon) }}" alt="" />
+                                                    <span>{{ $category->name }}</span>
+                                                </a>
+                                                @if (count($category->children_nested) > 0)
+                                                    <ul>
+                                                        @foreach ($category->children_nested as $child)
+                                                            <li
+                                                                class="{{ count($child->children_nested) > 0 ? '' : 'no_child' }}">
+                                                                <a
+                                                                    href="{{ route('products.index', ['category' => $child->slug]) }}">{{ $child->name }}</a>
+                                                                @if (count($child->children_nested) > 0)
+                                                                    <ul>
+                                                                        @foreach ($child->children_nested as $subchild)
+                                                                            <li class="no_child">
+                                                                                <a
+                                                                                    href="{{ route('products.index', ['category' => $subchild->slug]) }}">{{ $subchild->name }}</a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @endif
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
                                         @endif
                                     @endforeach
                                 </ul>
@@ -274,7 +276,8 @@
                         </div>
                         <div class="header-action-icon-2">
                             <a class="mini-cart-icon" href="{{ route('login') }}">
-                                <img alt="ShopX" src="{{ asset('assets/frontend/dist/imgs/theme/icons/icon-user.svg') }}" />                            </a>
+                                <img alt="ShopX"
+                                    src="{{ asset('assets/frontend/dist/imgs/theme/icons/icon-user.svg') }}" /> </a>
                         </div>
                     </div>
                 </div>
