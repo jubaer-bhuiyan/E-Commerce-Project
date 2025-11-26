@@ -12,7 +12,7 @@
             </div>
             <div class="row mt-30">
                 @foreach ($flashSaleProducts as $product)
-                    <x-frontend.product-card :product="$product" class="col-6 col-md-4 col-lg-3 col-xl-3 col-xxl-2" />
+                    <x-frontend.product-card :product="$product"  />
                 @endforeach
             </div>
             <div>
