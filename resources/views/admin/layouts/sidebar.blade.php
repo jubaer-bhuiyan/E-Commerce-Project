@@ -493,6 +493,15 @@
                 @endif
 
                 <li class="nav-item">
+                              <a class="nav-link"
+                                  href="{{ route('admin.custom-pages.index') }}">
+                                  <span class="nav-link-icon d-md-none d-lg-inline-block"><i
+                                          class="ti ti-ruler"></i></span>
+                                  <span class="nav-link-title"> Page Builder </span>
+                              </a>
+                          </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
                         </span>
