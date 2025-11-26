@@ -246,6 +246,13 @@
                                 @endif
 
                                 <div class="dropdown-menu-column">
+                                              <a class="dropdown-item"
+                                                  href="{{ route('admin.reviews.index') }}">
+                                                  Reviews
+                                              </a>
+                                          </div>
+
+                                <div class="dropdown-menu-column">
                                           <a class="dropdown-item"
                                               href="{{ route('admin.flash-sales.index') }}">
                                               Flash Sales
