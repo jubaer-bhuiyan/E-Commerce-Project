@@ -247,6 +247,13 @@
 
                                 <div class="dropdown-menu-column">
                                           <a class="dropdown-item"
+                                              href="{{ route('admin.flash-sales.index') }}">
+                                              Flash Sales
+                                          </a>
+                                      </div>
+
+                                <div class="dropdown-menu-column">
+                                          <a class="dropdown-item"
                                               href="{{ route('admin.sliders.index') }}">
                                               Sliders
                                           </a>

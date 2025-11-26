@@ -74,3 +74,5 @@
     </div>
 </div>
 <!--end product card-->
+
+// Complete code
