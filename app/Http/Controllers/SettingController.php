@@ -145,3 +145,5 @@ class SettingController extends Controller implements HasMiddleware
         return redirect()->back();
     }
 }
+
+// Complete Code
