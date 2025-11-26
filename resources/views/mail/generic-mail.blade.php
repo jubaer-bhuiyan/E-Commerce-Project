@@ -309,7 +309,7 @@
               <!-- START MAIN CONTENT AREA -->
               <tr>
                 <td class="wrapper">
-                  <p>{{ $body }}</p>
+                  <p>{!! $body !!}</p>
                 </td>
               </tr>
 
@@ -342,3 +342,6 @@
     </table>
   </body>
 </html>
+
+
+// Complete Code

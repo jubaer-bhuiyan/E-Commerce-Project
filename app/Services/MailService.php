@@ -7,9 +7,18 @@ use Illuminate\Support\Facades\Mail;
 
 class MailService
 {
-    public static function send(string $to, string $subject, string $body) : bool
+    public static function send(string $to, string $subject, string $body): bool
     {
+
         Mail::to($to)->send(new GenericMail($subject, $body));
+
+        return true;
+    }
+
+    public static function sendAndQueue(string $to, string $subject, string $body): bool
+    {
+
+        Mail::to($to)->queue(new GenericMail($subject, $body));
 
         return true;
     }
