@@ -112,7 +112,7 @@
                                                     Account</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('orders.index') }}"><i
+                                                <a href="{{ route('track.order.index') }}"><i
                                                         class="fi fi-rs-location-alt mr-10"></i>Order
                                                     Tracking</a>
                                             </li>
