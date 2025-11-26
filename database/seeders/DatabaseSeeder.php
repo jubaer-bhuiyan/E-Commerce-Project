@@ -4,16 +4,15 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Seeders\Admin\AdminSeeder;
 use Database\Seeders\Admin\PermissionSeeder;
+use Database\Seeders\Admin\SettingSeeder;
 use Database\Seeders\Frontend\UserSeeder;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
@@ -26,12 +25,20 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-         /** Admin Seeders */
+        /** Admin Seeders */
         $this->call(AdminSeeder::class);
         $this->call(PermissionSeeder::class);
 
 
         /** Frontend Seeders */
         $this->call(UserSeeder::class);
+
+        /** Banner Ad Seeder */
+        $this->call(BannerAdSeeder::class);
+
+        /** Setting Seeder */
+        $this->call(SettingSeeder::class);
     }
 }
+
+// Complete Code
