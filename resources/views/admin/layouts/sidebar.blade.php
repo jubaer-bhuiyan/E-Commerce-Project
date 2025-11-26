@@ -501,6 +501,14 @@
                               </a>
                           </li>
 
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ route('admin.banners.index') }}">
+                                  <span class="nav-link-icon d-md-none d-lg-inline-block"><i
+                                          class="ti ti-ad"></i></span>
+                                  <span class="nav-link-title"> Advertisement </span>
+                              </a>
+                          </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i>
