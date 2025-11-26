@@ -24,4 +24,4 @@ class FlashSaleStoreRequest extends FormRequest
     }
 }
 
-// Complete code
+// Complete code 
