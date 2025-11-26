@@ -126,7 +126,7 @@ class Product extends Model
 
         return $getPriceData(null, $this->price, $this->special_price, $inStock, $qty);
     }
- 
+
 
     function getVariantOrProductPriceAndStock(?int $variantId = null): array
     {
@@ -202,3 +202,5 @@ class Product extends Model
         return round($this->reviews()->avg('rating'), 1);
     }
 }
+
+// complete code
