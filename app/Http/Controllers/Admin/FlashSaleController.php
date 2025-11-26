@@ -110,4 +110,4 @@ class FlashSaleController extends Controller implements HasMiddleware
     }
 }
 
-// No Change 
+// No Change
