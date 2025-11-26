@@ -55,6 +55,7 @@ class ProductController extends Controller implements HasMiddleware
 
     function store(ProductStoreRequest $request, string $type)
     {
+
         if (!in_array($type, ['physical', 'digital'])) abort(404);
 
         $product = new Product();
@@ -79,7 +80,7 @@ class ProductController extends Controller implements HasMiddleware
         $product->is_hot = $request->has('is_hot') ? 1 : 0;
         $product->is_new = $request->has('is_new') ? 1 : 0;
         $product->save();
- 
+
         /** Attach categories */
         $product->categories()->sync($request->categories);
 
@@ -643,3 +644,5 @@ class ProductController extends Controller implements HasMiddleware
         return response()->json(['status' => 'error', 'message' => 'You do not have permission to delete this product']);
     }
 }
+
+// Complete Code
