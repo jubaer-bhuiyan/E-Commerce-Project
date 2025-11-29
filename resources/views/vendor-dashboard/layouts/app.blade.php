@@ -49,7 +49,7 @@
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
                                     Copyright &copy; 2025
-                                    <a href="https://www.shakilahmeed.com" class="link-secondary">Shakil Ahmed</a>. All
+                                    <a href="https://www.Jubbaer2001pythonanywhere.com" class="link-secondary">Jubaer Ahamed Bhuiyan</a>. All
                                     rights reserved.
                                 </li>
                                 <li class="list-inline-item">
