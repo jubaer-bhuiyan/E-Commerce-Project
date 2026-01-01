@@ -79,4 +79,3 @@ class WithdrawMethodController extends Controller implements HasMiddleware
     }
 }
 
-// End Code

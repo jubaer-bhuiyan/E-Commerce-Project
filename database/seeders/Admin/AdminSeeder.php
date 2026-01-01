@@ -12,8 +12,8 @@ class AdminSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
+
         /** Create Super Admin */
         $admin = new Admin();
         $admin->name = 'SUPER ADMIN';
@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
         $admin->save();
 
         /** Create Super Admin Role */
-        Role::create(['name' => 'Super Admin', 'guard_name' => 'admin']); 
+        Role::create(['name' => 'Super Admin', 'guard_name' => 'admin']);
 
         /** Assign Super Admin Role to Super Admin */
         $admin->assignRole('Super Admin');

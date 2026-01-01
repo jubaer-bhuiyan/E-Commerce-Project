@@ -91,5 +91,3 @@ class CustomPageController extends Controller implements HasMiddleware
     }
 }
 
-
-// Complete Code

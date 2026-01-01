@@ -53,5 +53,3 @@ class BannerAdController extends Controller implements HasMiddleware
     }
 }
 
-
-//Complete Code

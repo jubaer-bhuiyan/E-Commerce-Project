@@ -31,5 +31,3 @@ class ContactMessageController extends Controller implements HasMiddleware
         return response()->json(['status' => 'success', 'message' => 'Message deleted successfully.']);
     }
 }
-
-// completed code

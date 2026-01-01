@@ -46,4 +46,3 @@ class ContactSectionSettingController extends Controller implements HasMiddlewar
     }
 }
 
-// Complete code
