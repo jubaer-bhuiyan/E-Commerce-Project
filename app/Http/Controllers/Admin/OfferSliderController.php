@@ -89,4 +89,3 @@ class OfferSliderController extends Controller implements HasMiddleware
     }
 }
 
-// Completed code

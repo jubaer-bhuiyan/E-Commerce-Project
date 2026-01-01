@@ -99,5 +99,3 @@ class HeroBannerController extends Controller implements HasMiddleware
         //
     }
 }
-
-// No Change

@@ -49,5 +49,3 @@ class OrderController extends Controller implements HasMiddleware
         return back();
     }
 }
-
-// No Change

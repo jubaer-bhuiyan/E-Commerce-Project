@@ -43,7 +43,7 @@ class ShippingRuleController extends Controller implements HasMiddleware
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ShippingRuleStoreRequest $request): RedirectResponse 
+    public function store(ShippingRuleStoreRequest $request): RedirectResponse
     {
         ShippingRule::create($request->validated());
         AlertService::created();

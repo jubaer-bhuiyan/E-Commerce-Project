@@ -99,5 +99,3 @@ class OurFeatureController extends Controller implements HasMiddleware
         return response()->json(['status' => 'success', 'message' => 'Feature deleted successfully']);
     }
 }
-
-// Complete Code

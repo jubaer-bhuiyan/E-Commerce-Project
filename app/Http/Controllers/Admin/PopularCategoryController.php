@@ -90,5 +90,3 @@ class PopularCategoryController extends Controller implements HasMiddleware
         //
     }
 }
-
-// No Change

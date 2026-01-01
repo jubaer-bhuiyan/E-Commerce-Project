@@ -87,3 +87,4 @@ class ProductSectionController extends Controller implements HasMiddleware
         //
     }
 }
+ 
