@@ -462,4 +462,3 @@
         donutChart.render();
     </script>
 @endpush
- 
