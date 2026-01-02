@@ -18,11 +18,13 @@
     <link href="{{ asset('assets/admin/dist/css/tabler.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- END GLOBAL MANDATORY STYLES -->
+
     <!-- BEGIN CUSTOM FONT -->
     <style>
         @import url("https://rsms.me/inter/inter.css");
     </style>
     <!-- END CUSTOM FONT -->
+
     @stack('styles')
 </head>
 
@@ -35,7 +37,6 @@
         @include('admin.layouts.sidebar')
         <!--  END SIDEBAR  -->
         <div class="page-wrapper">
-
             <!-- BEGIN PAGE BODY -->
             <div class="page-body">
                 @yield('contents')
@@ -76,11 +77,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets/admin/dist/libs/litepicker/dist/litepicker.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{{ asset('assets/admin/dist/js/tabler.min.js') }}" defer></script>
     @include('admin.layouts.scripts')
     @stack('scripts')
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-
 </body>
 
 </html>
