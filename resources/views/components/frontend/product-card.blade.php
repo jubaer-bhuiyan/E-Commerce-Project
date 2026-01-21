@@ -81,5 +81,3 @@
     </div>
 </div>
 <!--end product card-->
-
-{{-- Complete Code --}}
