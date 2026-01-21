@@ -146,5 +146,3 @@ if(!function_exists('setActive')) {
         return request()->routeIs($routes) ? $activeClass : '';
     }
 }
-
-// No Change
