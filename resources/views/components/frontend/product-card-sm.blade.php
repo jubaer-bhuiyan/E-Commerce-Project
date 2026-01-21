@@ -14,7 +14,7 @@
         </div>
         <div class="product-price">
             @php
-                $price = $product->getEffectivePriceAndStock(); 
+                $price = $product->getEffectivePriceAndStock();
             @endphp
 
             @if ($price['in_stock'])

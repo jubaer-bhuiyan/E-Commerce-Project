@@ -141,5 +141,3 @@ class HomeController extends Controller
         return view('frontend.pages.flash-sale', compact('flashSale', 'flashSaleProducts'));
     }
 }
-
-// No Change
