@@ -644,5 +644,3 @@ class ProductController extends Controller implements HasMiddleware
         return response()->json(['status' => 'error', 'message' => 'You do not have permission to delete this product']);
     }
 }
-
-// Complete Code

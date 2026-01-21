@@ -491,5 +491,3 @@
         })
     </script>
 @endpush
-
-{{-- // complete code --}}

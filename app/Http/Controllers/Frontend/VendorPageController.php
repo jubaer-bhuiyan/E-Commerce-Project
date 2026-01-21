@@ -31,5 +31,3 @@ class VendorPageController extends Controller
         return view('frontend.pages.vendor-detail', compact('store'));
     }
 }
-
-// Complete Code

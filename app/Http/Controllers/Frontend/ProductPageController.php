@@ -133,6 +133,3 @@ class ProductPageController extends Controller
         return view('frontend.pages.product-show', compact('product', 'relatedProducts', 'reviews', 'reviewGroup', 'totalReviews', 'avgRating'));
     }
 }
-
-
-// Complete Code 
