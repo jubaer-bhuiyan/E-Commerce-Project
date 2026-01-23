@@ -4,7 +4,7 @@
     <div class="container-xl">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Create Users</h3>
+                <h3 class="card-title">Create User</h3>
                 <div class="card-actions">
                     <a href="{{ route('admin.role-users.index') }}" class="btn btn-primary">Back</a>
                 </div>
@@ -20,6 +20,7 @@
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label required">Email</label>
@@ -34,23 +35,22 @@
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label required">Confirm Password</label>
-                                <input type="text" class="form-control" name="password_confirmation" placeholder=""
-                                    value="">
+                                <input type="text" class="form-control" name="password_confirmation" placeholder="" value="">
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label required">Role</label>
                                 <select name="role" id="" class="form-control">
                                     <option value="">Select</option>
-                                    @foreach ($roles as $role)
-                                        @if ($role->name == 'Super Admin')
-                                            @continue
-                                        @endif
+                                    @foreach($roles as $role)
+                                        @if($role->name == 'Super Admin') @continue @endif
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
@@ -58,8 +58,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                 </form>
             </div>

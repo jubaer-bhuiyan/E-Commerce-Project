@@ -13,19 +13,6 @@
                                     class="img-fluid w-100">
                             </a>
                         </div>
-                        <div class="col-6 col-md-4 col-lg-3 col-xl-3 wow fadeInUp">
-                            <a href="{{ route('stripe.payment') }}" class="wsus__payment_method">
-                                <img src="{{ asset('assets/frontend/dist/imgs/stripe.png') }}" alt="payment"
-                                    class="img-fluid w-100">
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3 col-xl-3 wow fadeInUp">
-                            <a href="{{ route('razorpay.redirect') }}" class="wsus__payment_method">
-                                <img src="{{ asset('assets/frontend/dist/imgs/razorpay.png') }}" alt="payment"
-                                    class="img-fluid w-100">
-                            </a>
-                        </div>
-
                     </div>
                 </div>
                 <div class="col-xl-4">

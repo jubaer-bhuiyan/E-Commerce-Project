@@ -21,6 +21,7 @@
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label required">Email</label>
@@ -35,20 +36,21 @@
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label required">Confirm Password</label>
-                                <input type="text" class="form-control" name="password_confirmation" placeholder=""
-                                    value="">
+                                <input type="text" class="form-control" name="password_confirmation" placeholder="" value="">
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label required">Role</label>
                                 <select name="role" id="" class="form-control">
                                     <option value="">Select</option>
-                                   @foreach($roles as $role)
+                                    @foreach($roles as $role)
                                         @if($role->name == 'Super Admin') @continue @endif
                                         <option @selected(in_array($role->name, $admin->getRoleNames()->toArray())) value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
@@ -57,8 +59,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                 </form>
             </div>

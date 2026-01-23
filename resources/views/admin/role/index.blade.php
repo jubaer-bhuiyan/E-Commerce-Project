@@ -26,12 +26,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td><span class="badge bg-primary-lt">{{ $role->permissions_count }}</span></td>
-
                                     <td>
-                                        @if ($role->name != 'Super Admin')
-                                            <a href="{{ route('admin.role.edit', $role) }}">Edit</a>
-                                            <a class="text-danger delete-item"
-                                                href="{{ route('admin.role.destroy', $role) }}">Delete</a>
+                                        @if($role->name != 'Super Admin')
+                                        <a href="{{ route('admin.role.edit', $role) }}">Edit</a>
+                                        <a class="text-danger delete-item" href="{{ route('admin.role.destroy', $role) }}">delete</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -40,11 +38,12 @@
                                     <td colspan="4" class="text-center">No Roles</td>
                                 </tr>
                             @endforelse
+
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer">
-                </div>
+                  </div>
             </div>
         </div>
     </div>

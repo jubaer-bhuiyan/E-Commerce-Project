@@ -34,9 +34,11 @@
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: {{ ratingPercent($product->reviews_avg_rating) }}%"></div>
+                                            <div class="product-rating"
+                                                style="width: {{ ratingPercent($product->reviews_avg_rating) }}%"></div>
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> ({{ $product->reviews_count }} reviews)</span>
+                                        <span class="font-small ml-5 text-muted"> ({{ $product->reviews_count }}
+                                            reviews)</span>
                                     </div>
                                 </div>
                                 <div class="clearfix product-price-cover">
@@ -116,11 +118,22 @@
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-                                        <button type="submit" data-variant="" data-id="{{ $product->id }}"
-                                            data-modal="false" class="button button-add-to-cart add_to_cart"><i
-                                                class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                        <a aria-label="Add To Wishlist" class="action-btn hover-up wishlist-btn" data-id="{{ $product->id }}"
-                                            href="" ><i class="fi-rs-heart"></i></a>
+                                        @php
+                                            $stockInfo = $product->getEffectivePriceAndStock();
+                                        @endphp
+
+                                        @if ($stockInfo['in_stock'] && ($stockInfo['qty'] > 0 || $stockInfo['qty'] == 'Unlimited'))
+                                            <button type="submit" data-variant="" data-id="{{ $product->id }}"
+                                                data-modal="false" class="button button-add-to-cart add_to_cart"><i
+                                                    class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                        @else
+                                            <button type="button" class="button button-add-to-cart" disabled
+                                                style="background: #ccc; cursor: not-allowed;">
+                                                <i class="fi-rs-shopping-cart"></i>Out of Stock
+                                            </button>
+                                        @endif
+                                        <a aria-label="Add To Wishlist" class="action-btn hover-up wishlist-btn"
+                                            data-id="{{ $product->id }}" href=""><i class="fi-rs-heart"></i></a>
 
                                     </div>
                                 </div>
@@ -140,14 +153,22 @@
                                                 {{ $loop->last ? '' : ', ' }}
                                             @endforeach
                                         </li>
-                                        <li>Stock:<span class="in-stock text-brand ml-5"><span class="stock-qty">
-                                                    @if ($product->manage_stock == 1)
-                                                        {{ $product->qty }}
-                                                    @else
-                                                        Unlimited
-                                                    @endif
+                                        <li>Stock:
+                                            @php
+                                                $stockInfo = $product->getEffectivePriceAndStock();
+                                            @endphp
+
+                                            @if ($stockInfo['in_stock'] && $stockInfo['qty'] > 0)
+                                                <span class="in-stock text-brand ml-5">
+                                                    <span class="stock-qty">{{ $stockInfo['qty'] }}</span> Items In Stock
                                                 </span>
-                                                Items In Stock</span>
+                                            @elseif($stockInfo['qty'] == 'Unlimited')
+                                                <span class="in-stock text-brand ml-5">
+                                                    <span class="stock-qty">Unlimited</span> Items In Stock
+                                                </span>
+                                            @else
+                                                <span class="out-of-stock text-danger ml-5">Out of Stock</span>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>
@@ -223,29 +244,32 @@
                                                 <h4 class="mb-30">Customer Reviews</h4>
                                                 <div class="comment-list">
                                                     @forelse($reviews as $review)
-                                                    <div class="single-comment justify-content-between d-flex mb-30">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="{{ asset($review->user->avatar) }}" alt="" />
-                                                                <a href="#"
-                                                                    class="font-heading text-brand">{{ $review->user->name }}</a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="d-flex justify-content-between mb-10">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted"> {{ date('F d Y', strtotime($review->created_at)) }}</span>
-                                                                    </div>
-                                                                    <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: {{ $review->rating * 2 }}0%">
+                                                        <div class="single-comment justify-content-between d-flex mb-30">
+                                                            <div class="user justify-content-between d-flex">
+                                                                <div class="thumb text-center">
+                                                                    <img src="{{ asset($review->user->avatar) }}"
+                                                                        alt="" />
+                                                                    <a href="#"
+                                                                        class="font-heading text-brand">{{ $review->user->name }}</a>
+                                                                </div>
+                                                                <div class="desc">
+                                                                    <div class="d-flex justify-content-between mb-10">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <span class="font-xs text-muted">
+                                                                                {{ date('F d Y', strtotime($review->created_at)) }}</span>
+                                                                        </div>
+                                                                        <div class="product-rate d-inline-block">
+                                                                            <div class="product-rating"
+                                                                                style="width: {{ $review->rating * 2 }}0%">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
+                                                                    <p class="mb-10">{{ $review->review }}</p>
                                                                 </div>
-                                                                <p class="mb-10">{{ $review->review }}</p>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     @empty
-                                                    <div class="alert alert-warning">No reviews found</div>
+                                                        <div class="alert alert-warning">No reviews found</div>
                                                     @endforelse
                                                 </div>
                                                 {{ $reviews->links() }}
@@ -259,17 +283,20 @@
                                                     </div>
                                                     <h6>{{ round($avgRating, 1) }} out of 5</h6>
                                                 </div>
-                                                @foreach(range(5, 1) as $star)
-                                                @php
-                                                    $count = $reviewGroup[$star] ?? 0;
-                                                    $percent = $totalReviews > 0 ? ($count / $totalReviews) * 100 : 0;
-                                                @endphp
-                                                <div class="progress">
-                                                    <span>{{ $star }} star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: {{ $percent }}%"
-                                                        aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100">{{ $percent }}%
+                                                @foreach (range(5, 1) as $star)
+                                                    @php
+                                                        $count = $reviewGroup[$star] ?? 0;
+                                                        $percent =
+                                                            $totalReviews > 0 ? ($count / $totalReviews) * 100 : 0;
+                                                    @endphp
+                                                    <div class="progress">
+                                                        <span>{{ $star }} star</span>
+                                                        <div class="progress-bar" role="progressbar"
+                                                            style="width: {{ $percent }}%"
+                                                            aria-valuenow="{{ $percent }}" aria-valuemin="0"
+                                                            aria-valuemax="100">{{ $percent }}%
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -279,41 +306,47 @@
                                         <h4 class="mb-15">Add a review</h4>
                                         <div class="product-rate d-inline-block mb-30"></div>
                                         <div class="row">
-                                            @if(Auth::guard('web')->check())
-                                            <div class="col-lg-8 col-md-12">
-                                                <form class="form-contact comment_form" method="POST" action="{{ route('product.review.store', $product) }}" id="commentForm">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                               <select name="rating" id="" class="form-control">
-                                                                @for($i = 5; $i > 0; $i--)
-                                                                    <option value="{{ $i }}">{{ $i }} Star</option>
-                                                                @endfor
-                                                               </select>
-                                                                <x-input-error :messages="$errors->get('rating')" class="mt-2" />
+                                            @if (Auth::guard('web')->check())
+                                                <div class="col-lg-8 col-md-12">
+                                                    <form class="form-contact comment_form" method="POST"
+                                                        action="{{ route('product.review.store', $product) }}"
+                                                        id="commentForm">
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <select name="rating" id=""
+                                                                        class="form-control">
+                                                                        @for ($i = 5; $i > 0; $i--)
+                                                                            <option value="{{ $i }}">
+                                                                                {{ $i }} Star</option>
+                                                                        @endfor
+                                                                    </select>
+                                                                    <x-input-error :messages="$errors->get('rating')" class="mt-2" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <textarea class="form-control w-100" name="review" id="comment" cols="30" rows="9"
-                                                                    placeholder="Write Comment"></textarea>
-                                                                <x-input-error :messages="$errors->get('review')" class="mt-2" />
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <textarea class="form-control w-100" name="review" id="comment" cols="30" rows="9"
+                                                                        placeholder="Write Comment"></textarea>
+                                                                    <x-input-error :messages="$errors->get('review')" class="mt-2" />
+                                                                </div>
                                                             </div>
-                                                        </div>
 
 
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="button button-contactForm">Submit
-                                                            Review</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit"
+                                                                class="button button-contactForm">Submit
+                                                                Review</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             @else
-                                            <div class="alert alert-warning col-lg-8 col-md-12">
-                                                <p class="mb-0">Please <a href="{{ route('login') }}">login</a> to write a review.</p>
-                                            </div>
+                                                <div class="alert alert-warning col-lg-8 col-md-12">
+                                                    <p class="mb-0">Please <a href="{{ route('login') }}">login</a> to
+                                                        write a review.</p>
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -474,7 +507,7 @@
                             location.reload();
                         }
                     },
-                    error: function(xhr, status, error ) {
+                    error: function(xhr, status, error) {
                         console.log(xhr);
                         let errors = xhr.responseJSON.errors;
                         $.each(errors, function(key, value) {

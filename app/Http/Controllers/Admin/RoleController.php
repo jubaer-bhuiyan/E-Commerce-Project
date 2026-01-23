@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role as Role;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller implements HasMiddleware
 {
@@ -27,7 +27,7 @@ class RoleController extends Controller implements HasMiddleware
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(): View
     {
         $roles = Role::withCount('permissions')->get();
         return view('admin.role.index', compact('roles'));
@@ -36,7 +36,7 @@ class RoleController extends Controller implements HasMiddleware
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         $permissions = Permission::all()->groupBy('group_name');
         return view('admin.role.create', compact('permissions'));
@@ -49,7 +49,7 @@ class RoleController extends Controller implements HasMiddleware
     {
         $request->validate([
             'role' => ['required', 'string', 'max:255', 'unique:roles,name'],
-            'permissions' => ['required', 'array'],
+            'permissions' => ['required', 'array']
         ]);
 
         $role = Role::create(['name' => $request->role, 'guard_name' => 'admin']);
@@ -86,9 +86,10 @@ class RoleController extends Controller implements HasMiddleware
             AlertService::error('You can not update Super Admin role.');
             return to_route('admin.role.index');
         }
+
         $request->validate([
-            'role' => ['required', 'string', 'max:255', 'unique:roles,name,'. $role->id],
-            'permissions' => ['required', 'array'],
+            'role' => ['required', 'string', 'max:255', 'unique:roles,name,' . $role->id],
+            'permissions' => ['required', 'array']
         ]);
 
         $role->update(['name' => $request->role]);
@@ -102,7 +103,7 @@ class RoleController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role) : JsonResponse
+    public function destroy(Role $role): JsonResponse
     {
         if ($role->name == 'Super Admin') {
             return response()->json(['status' => 'error', 'message' => 'You can not delete Super Admin role.']);

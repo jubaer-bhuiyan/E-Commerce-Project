@@ -49,7 +49,7 @@ class OrderService
             $order->customer_first_name = user()->name;
             $order->billing_info = $billingInfo;
             $order->shipping_info = $shippingInfo;
-            $order->shipping_charge= getShippingCharge();
+            $order->shipping_charge = getShippingCharge();
             if (Session::has('coupon')) {
                 $order->has_coupon = true;
                 $order->coupon = Session::get('coupon')['code'];
@@ -72,9 +72,9 @@ class OrderService
 
             // insert update balance
 
-            if(StoreWallet::where('store_id', $store['store']->id)->exists()) {
+            if (StoreWallet::where('store_id', $store['store']->id)->exists()) {
                 $storeWallet = StoreWallet::where('store_id', $store['store']->id)->first();
-            }else {
+            } else {
                 $storeWallet = new StoreWallet();
             }
 
@@ -97,15 +97,40 @@ class OrderService
                 $orderProduct->variant = $item->variant;
                 $orderProduct->quantity = $item->quantity;
                 $orderProduct->save();
-            }
 
+                // *** ADD THIS CODE - DECREASE STOCK ***
+                $product = $item->product;
+
+                if ($item->variant_id) {
+                    // Decrease variant stock
+                    $variant = $product->variants()->find($item->variant_id);
+                    if ($variant && $variant->manage_stock) {
+                        $variant->qty -= $item->quantity;
+                        if ($variant->qty <= 0) {
+                            $variant->qty = 0;
+                            $variant->in_stock = 0;
+                        }
+                        $variant->save();
+                    }
+                } else {
+                    // Decrease product stock (no variant)
+                    if ($product->manage_stock == 'yes') {
+                        $product->qty -= $item->quantity;
+                        if ($product->qty <= 0) {
+                            $product->qty = 0;
+                            $product->in_stock = 0;
+                        }
+                        $product->save();
+                    }
+                }
+                // *** END OF STOCK DEDUCTION CODE ***
+            }
         }
 
         self::clearCart();
-
     }
 
-    private static function clearCart() : void
+    private static function clearCart(): void
     {
         Cart::where('user_id', user()->id)->delete();
         Session::forget('billing_info');

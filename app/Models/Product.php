@@ -158,7 +158,7 @@ class Product extends Model
                     );
                 }
 
-                if(!$variant->manage_stock && $variant->in_stock) {
+                if (!$variant->manage_stock && $variant->in_stock) {
                     return $getPriceData(
                         $variant->id,
                         $variant->price,
@@ -169,15 +169,13 @@ class Product extends Model
                 }
 
                 return $getPriceData(
-                        $variant->id,
-                        $variant->price,
-                        $variant->special_price,
-                        false,
-                        null
+                    $variant->id,
+                    $variant->price,
+                    $variant->special_price,
+                    false,
+                    null
                 );
-
             }
-
         }
 
         // No variants exist, fallback to product-level stock
@@ -190,16 +188,45 @@ class Product extends Model
         return $getPriceData(null, $this->price, $this->special_price, $inStock, $qty);
     }
 
-    function reviews() : HasMany
+    function reviews(): HasMany
     {
         return $this->hasMany(ProductReview::class, 'product_id');
     }
 
-    function rating() : float
+    function rating(): float
     {
-        if(!$this->reviews()->exists()) return 0;
+        if (!$this->reviews()->exists()) return 0;
 
         return round($this->reviews()->avg('rating'), 1);
+    }
+
+    /**
+     * Decrease stock after order
+     */
+    public function decreaseStock($quantity, $variantId = null)
+    {
+        if ($variantId) {
+            // Decrease variant stock
+            $variant = $this->variants()->find($variantId);
+            if ($variant && $variant->manage_stock) {
+                $variant->qty -= $quantity;
+                if ($variant->qty <= 0) {
+                    $variant->qty = 0;
+                    $variant->in_stock = 0;
+                }
+                $variant->save();
+            }
+        } else {
+            // Decrease product stock
+            if ($this->manage_stock == 'yes') {
+                $this->qty -= $quantity;
+                if ($this->qty <= 0) {
+                    $this->qty = 0;
+                    $this->in_stock = 0;
+                }
+                $this->save();
+            }
+        }
     }
 }
 

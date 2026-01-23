@@ -607,41 +607,6 @@
                           </li>
                       @endif
 
-                      @if (hasPermission(['Role Management', 'Role User Management']))
-                          <li class="nav-item dropdown {{ setActive(['admin.role.*', 'admin.role-users.*']) }}">
-                              <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                                  data-bs-auto-close="false" role="button" aria-expanded="false">
-                                  <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                      <i class="ti ti-shield"></i>
-                                  </span>
-                                  <span class="nav-link-title"> Access Management </span>
-                              </a>
-                              <div
-                                  class="dropdown-menu {{ setActive(['admin.role.*', 'admin.role-users.*'], 'show') }}">
-                                  <div class="dropdown-menu-columns">
-                                      @if (hasPermission(['Role Management']))
-                                          <div class="dropdown-menu-column">
-                                              <a class="dropdown-item {{ setActive(['admin.role.*']) }}"
-                                                  href="{{ route('admin.role.index') }}">
-                                                  Role
-                                              </a>
-                                          </div>
-                                      @endif
-
-                                      @if (hasPermission(['Role User Management']))
-                                          <div class="dropdown-menu-column">
-                                              <a class="dropdown-item {{ setActive(['admin.role-users.*']) }}"
-                                                  href="{{ route('admin.role-users.index') }}">
-                                                  Role Users
-                                              </a>
-                                          </div>
-                                      @endif
-
-                                  </div>
-                              </div>
-                          </li>
-                      @endif
-
                       @if (hasPermission(['Settings Management']))
                           <li class="nav-item">
                               <a class="nav-link {{ setActive(['admin.settings.*']) }}"

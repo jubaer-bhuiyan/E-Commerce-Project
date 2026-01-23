@@ -29,14 +29,13 @@
                                     <td>{{ $admin->email }}</td>
                                     <td>
                                         @foreach($admin->getRoleNames() as $role)
-                                        <span class="badge bg-primary-lt">{{ $role }}</span>
+                                            <span class="badge bg-primary-lt">{{ $role }}</span>
                                         @endforeach
                                     </td>
-
                                     <td>
-                                         @if(!$admin->hasRole('Super Admin'))
+                                        @if(!$admin->hasRole('Super Admin'))
                                             <a href="{{ route('admin.role-users.edit', $admin) }}">Edit</a>
-                                            <a class="text-danger delete-item" href="{{ route('admin.role-users.destroy', $admin) }}">Delete</a>
+                                            <a class="text-danger delete-item" href="{{ route('admin.role-users.destroy', $admin) }}">delete</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -45,6 +44,7 @@
                                     <td colspan="4" class="text-center">No Roles</td>
                                 </tr>
                             @endforelse
+
                         </tbody>
                     </table>
                 </div>
